@@ -11,11 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsConstruccion.Models", "Gs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsConstruccion.AppEmpleado", "GcConstruccion.AppEmpleado\GsConstruccion.AppEmpleado.csproj", "{1DE3F52D-9EC3-4A17-8E23-5808FFD08A2B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql Query", "Sql Query", "{9D460507-0DA7-47F0-9B2A-AC859DFE3CFC}"
-	ProjectSection(SolutionItems) = preProject
-		Base Datos.txt = Base Datos.txt
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
