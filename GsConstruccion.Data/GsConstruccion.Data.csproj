@@ -65,11 +65,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelGsConstruccion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataEntities\DataLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataEntities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="DataContext\ModelGsConstruccion.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -94,10 +93,17 @@
       <DependentUpon>ModelGsConstruccion.edmx</DependentUpon>
       <LastGenOutput>ModelGsConstruccion.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql Query\Cargo.txt" />
     <Content Include="Sql Query\Ciudad.txt" />
+    <Content Include="Sql Query\Empresa.txt" />
+    <Content Include="Sql Query\InicioSesion.txt" />
     <Content Include="Sql Query\Pais.txt" />
+    <Content Include="Sql Query\Rol.txt" />
+    <Content Include="Sql Query\TipoDocumentoIdentificacion.txt" />
     <Content Include="Sql Query\TipoEstadoCivil.txt" />
+    <Content Include="Sql Query\TipoFormaPago.txt" />
     <Content Include="Sql Query\TipoHoraExtra.txt" />
+    <Content Include="Sql Query\Usuario.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

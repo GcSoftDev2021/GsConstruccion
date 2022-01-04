@@ -1,0 +1,36 @@
+﻿
+CREATE TABLE Cargo 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1
+unique(Nombre)
+)
+
+go
+
+
+insert into Cargo (nombre) values ('Ingeniero')
+insert into Cargo (nombre) values ('Contratista')
+insert into Cargo (nombre) values ('Oficial')
+insert into Cargo (nombre) values ('Maestro')
+insert into Cargo (nombre) values ('Auxiliar')
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaCargo]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Cargo WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreCargo (@idCargo INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreCargo VARCHAR(255)
+	SELECT	@NombreCargo = Nombre
+	FROM	Cargo
+	WHERE	Id = @idCargo
+	RETURN @NombreCargo
+END

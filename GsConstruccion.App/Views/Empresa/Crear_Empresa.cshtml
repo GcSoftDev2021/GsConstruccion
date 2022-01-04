@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Empresa";
+}
+
+<div style="text-align:end">
+    <a class="btn btn-light btn-sm" href="/Empresa/Empresa">Volver</a>
+    <a class="btn btn-warning btn-sm" href="/Empresa/Lista_Empresa">Ver Empresas</a>
+</div>
+
+<h2>Nueva Empresa</h2>
+
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <span>Nombre Empresa</span>
+            <input class="form-control" type="text" id="InputNombreEmpresa" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+</table>
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <span>Tipo Documento</span>
+            <select class="form-control" id="SelectTipoDocumento" style="min-width:100%">
+                <option value="-1">Seleccione ...</option>
+            </select>
+        </td>
+        <td style="width:50%">
+            <span>Número Documento</span>
+            <input class="form-control" type="text" id="InputNumeroDocumento" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50%">
+            <span>Email</span>
+            <input class="form-control" type="text" id="InputEmail" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+        <td style="width:50%">
+            <span>Telefono</span>
+            <input class="form-control" type="text" id="InputTelefono" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50%">
+            <span>Dirección</span>
+            <input class="form-control" type="text" id="InputDireccion" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+        <td style="width:50%">
+            <span>Ciudad</span>
+            <select class="form-control" id="SelectCiudad" style="min-width:100%">
+                <option value="-1">Seleccione ...</option>
+            </select>
+        </td>
+    </tr>
+</table>
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <span>Nombre Contacto</span>
+            <input class="form-control" type="text" id="InputNombreContacto" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+</table>
+
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <button class="btn btn-success" onclick="">Guardar Empresa</button>
+        </td>
+    </tr>
+</table>
+

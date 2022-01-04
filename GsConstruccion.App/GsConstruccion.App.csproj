@@ -115,6 +115,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="ScriptsApp\Home\Home.js" />
+    <Content Include="ScriptsApp\Login\Login.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -846,6 +848,13 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Sources\ImagesApp\EnConstruccion.gif" />
+    <Content Include="Sources\ImagesApp\IconoEnConstrucción.png" />
+    <Content Include="Sources\ImagesApp\Login.png" />
+    <Content Include="Sources\ImagesApp\Logo GCSoftDev.png" />
+    <Content Include="Sources\ImagesApp\Usuario.png" />
+    <Content Include="Sources\ImagesPerfilUsers\Usuario.png" />
+    <Content Include="Sources\ImagesProduct\ImageProductDefault.png" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -874,7 +883,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -888,6 +899,13 @@
     <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="Views\Empresa\Empresa.cshtml" />
+    <Content Include="Views\Empresa\Crear_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Lista_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Editar_Empresa.cshtml" />
+    <Content Include="Views\Empresa\Detalle_Empresa.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -905,6 +923,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GsConstruccion.Data\GsConstruccion.Data.csproj">
+      <Project>{27AF6F01-894A-431A-889E-9CE3F590EC2C}</Project>
+      <Name>GsConstruccion.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
