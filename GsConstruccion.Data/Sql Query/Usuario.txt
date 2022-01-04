@@ -1,0 +1,28 @@
+﻿CREATE TABLE Usuario 
+(Id int identity(1,1) Primary key ,
+IdUser varchar(255),
+Usuario varchar(255),
+Password varchar(255),
+Email varchar(255),
+Nombre varchar(255),
+IdRol int,
+ImagenPerfil varchar(255),
+FechaCreacion datetime,
+FechaVigencia date,
+Activo int default 1,
+unique(Iduser),
+unique(Usuario)
+)
+
+go 
+
+ALTER TABLE Usuario ADD CONSTRAINT FK_IdRol FOREIGN KEY (IdRol) references Rol(Id)
+
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin' ), 2) 
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  '1' ), 2) 
+--DBCC CHECKIDENT ('Usuario', RESEED, 0)
+--delete from Usuario
+
+go
+
+insert into Usuario (IdUser,Usuario,Password,Email,Nombre,IdRol,FechaCreacion, FechaVigencia, ImagenPerfil)values('E3AFED0047B08059D0FADA10F400C1E5','Admin','C4CA4238A0B923820DCC509A6F75849B','gestionsystem@admin.com','Administrador GestionSystem',1, GETDATE(), '2022-12-30','\Sources\ImagesPerfilUsers\Usuario.png')

@@ -1,0 +1,9 @@
+﻿CREATE TABLE Rol 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+unique(Nombre)
+)
+
+
+insert into Rol (Nombre) values ('Administrador')

@@ -1,0 +1,38 @@
+﻿
+CREATE TABLE TipoFormaPago 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1
+unique(Nombre)
+)
+
+go
+
+
+insert into TipoFormaPago (nombre) values ('Efectivo')
+insert into TipoFormaPago (nombre) values ('Daviplata')
+insert into TipoFormaPago (nombre) values ('Nequi')
+insert into TipoFormaPago (nombre) values ('Bancolombia')
+insert into TipoFormaPago (nombre) values ('Ahorro a la Mano')
+insert into TipoFormaPago (nombre) values ('Davivienda')
+insert into TipoFormaPago (nombre) values ('Banco de Bogota')
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoFormaPago]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoFormaPago WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoFormaPago (@idTipoFormaPago INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoFormaPago VARCHAR(255)
+	SELECT	@NombreTipoFormaPago = Nombre
+	FROM	TipoFormaPago
+	WHERE	Id = @idTipoFormaPago
+	RETURN @NombreTipoFormaPago
+END
