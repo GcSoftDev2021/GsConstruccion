@@ -1505,4 +1505,65 @@ END
 
 go
 
+CREATE PROCEDURE [dbo].[SP_BuscarRolUsuario] @IdUser varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+	DECLARE		@Rol varchar(255)
+		SELECT	@Rol = R.Nombre 
+		FROM	Rol R,
+				Usuario U
+		WHERE	R.Id = U.IdRol
+				and U.IdUser = @IdUser
+	
+	SET @Resultado = @Rol
+	SELECT @Resultado
+END
 
+---------------------------------------------------------------------------------------
+
+go
+
+CREATE TABLE Empresa 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+IdTipoDocumento int,
+Identificacion varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Contacto varchar(255),
+Direccion varchar(255),
+IdCiudad int,
+Activo int default 1,
+IdUsuarioCrea int,
+FechaCreacion datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdUsuarioCreaEmpresa FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdTipoDocumentoCreaEmpresa FOREIGN KEY (IdTipoDocumento ) references TipoDocumentoIdentificacion(Id)
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdCiudadCreaEmpresa FOREIGN KEY (IdCiudad ) references Ciudad(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearEmpresa] @IdUser varchar(255), @Modulo varchar(255), @NombreEmpresa varchar(255), @IdTipoDocumento int, @IdentificacionEmpresa varchar(255), @EmailEmpresa varchar(255), @TelefonoEmpresa varchar(255), @ContactoEmpresa varchar(255), @DireccionEmpresa varchar(255), @IdCiudad int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Empresa (Nombre,IdTipoDocumento,Identificacion,Email,Telefono,Contacto,Direccion,IdCiudad,IdUsuarioCrea, FechaCreacion) 
+				VALUES 
+				(@NombreEmpresa, @IdTipoDocumento, @IdentificacionEmpresa, @EmailEmpresa, @TelefonoEmpresa, @ContactoEmpresa, @DireccionEmpresa, @IdCiudad, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK__Se a creado la Empresa (' + @NombreEmpresa+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear País' 
+			END
+	SELECT @Resultado
+END
+
+go

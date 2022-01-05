@@ -66,7 +66,9 @@
       <DependentUpon>ModelGsConstruccion.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataEntities\DataCiudad.cs" />
+    <Compile Include="DataEntities\DataEmpresa.cs" />
     <Compile Include="DataEntities\DataLogin.cs" />
+    <Compile Include="DataEntities\DataRol.cs" />
     <Compile Include="DataEntities\DataTipoDocumento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

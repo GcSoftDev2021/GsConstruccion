@@ -38,3 +38,4 @@ function BuscarIdUsuario() {
     let IdUser = Cookies.get('IdUser');
     return IdUser;
 }
+

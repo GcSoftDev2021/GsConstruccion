@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GsConstruccion.Data.DataEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace GsConstruccion.App.Controllers
 {
     public class EmpresaController : Controller
     {
+        private readonly DataEmpresa dataEmpresa = new DataEmpresa();
         // GET: Empresa
         public ActionResult Empresa()
         {
@@ -32,6 +34,12 @@ namespace GsConstruccion.App.Controllers
         public ActionResult Detalle_Empresa()
         {
             return View();
+        }
+
+        public JsonResult CrearEmpresa(string IdUser, string Modulo, string NombreEmpresa, int IdTipoDocumento, string IdentificacionEmpresa, string EmailEmpresa, string TelefonoEmpresa, string ContactoEmpresa, string DireccionEmpresa, int IdCiudad)
+        {
+            string resultado = dataEmpresa.CrearEmpresa(IdUser, Modulo, NombreEmpresa, IdTipoDocumento, IdentificacionEmpresa, EmailEmpresa, TelefonoEmpresa, ContactoEmpresa, DireccionEmpresa, IdCiudad);
+            return Json(resultado);
         }
     }
 }

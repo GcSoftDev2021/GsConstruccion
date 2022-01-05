@@ -2,10 +2,10 @@
     let Usuario = $('#InputUsuario').val()
     let Password = $('#InputPassword').val()
     if (Usuario == '' || Usuario == null || Usuario == undefined) {
-        Swal.fire('Inicio de Sesión', 'Por favor ingrese el nombre de Usuario!', 'warning');
+        Swal.fire('GS Construcción dice:', 'Por favor ingrese el nombre de Usuario!', 'warning');
     }
     else if (Password == '' || Password == null || Password == undefined) {
-        Swal.fire('Inicio de Sesión', 'Por favor ingrese la contraseña!', 'warning');
+        Swal.fire('GS Construcción dice:', 'Por favor ingrese la contraseña!', 'warning');
     }
     else {
         $.ajax({
@@ -21,7 +21,7 @@
                     window.location.href = '/Home/Inicio';
                     //window.location.href = '/Home/Inicio' + '?User=' + valor[1];
                 } else {
-                    Swal.fire('Inicio Sesion', valor[1], 'info');
+                    Swal.fire('GS Construcción dice:', valor[1], 'info');
                 }
             },
         });
