@@ -115,8 +115,10 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="ScriptsApp\Ciudad\Ciudad.js" />
     <Content Include="ScriptsApp\Home\Home.js" />
     <Content Include="ScriptsApp\Login\Login.js" />
+    <Content Include="ScriptsApp\TipoDocumento\TipoDocumento.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -883,9 +885,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CiudadController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -916,6 +920,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Ciudad\" />
+    <Folder Include="Views\TipoDocumento\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -928,6 +934,10 @@
     <ProjectReference Include="..\GsConstruccion.Data\GsConstruccion.Data.csproj">
       <Project>{27AF6F01-894A-431A-889E-9CE3F590EC2C}</Project>
       <Name>GsConstruccion.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GsConstruccion.Models\GsConstruccion.Models.csproj">
+      <Project>{5C5761B6-16B8-4840-A761-419F59AFD434}</Project>
+      <Name>GsConstruccion.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

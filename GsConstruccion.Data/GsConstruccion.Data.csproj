@@ -65,10 +65,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelGsConstruccion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataEntities\DataCiudad.cs" />
     <Compile Include="DataEntities\DataLogin.cs" />
+    <Compile Include="DataEntities\DataTipoDocumento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GsConstruccion.Models\GsConstruccion.Models.csproj">
+      <Project>{5C5761B6-16B8-4840-A761-419F59AFD434}</Project>
+      <Name>GsConstruccion.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DataContext\ModelGsConstruccion.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
