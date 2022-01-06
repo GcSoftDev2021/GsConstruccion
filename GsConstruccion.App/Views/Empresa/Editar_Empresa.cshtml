@@ -4,3 +4,84 @@
 }
 
 
+<div style="text-align:end">
+    <a class="btn btn-light btn-sm" href="/Empresa/Empresa">Volver</a>
+    <a class="btn btn-success btn-sm" href="/Empresa/Crear_Empresa">Nueva Empresa</a>
+    <a class="btn btn-warning btn-sm" href="/Empresa/Lista_Empresa">Ver Empresas</a>
+</div>
+
+<h2>Editar Empresa</h2>
+
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <span>Nombre Empresa</span>
+            <input class="form-control" type="text" id="InputNombre" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+</table>
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <span>Tipo Documento</span>
+            <select class="form-control" id="SelectTipoDocumento" style="min-width:100%">
+                @*<option value="-1">Seleccione ...</option>*@
+            </select>
+        </td>
+        <td style="width:50%">
+            <span>Número Documento</span>
+            <input class="form-control" type="text" id="InputNumeroDocumento" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50%">
+            <span>Email</span>
+            <input class="form-control" type="text" id="InputEmail" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+        <td style="width:50%">
+            <span>Telefono</span>
+            <input class="form-control" type="text" id="InputTelefono" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50%">
+            <span>Dirección</span>
+            <input class="form-control" type="text" id="InputDireccion" name="name" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+        <td style="width:50%">
+            <span>Ciudad</span>
+            <select class="form-control" id="SelectCiudad" style="min-width:100%">
+                @*<option value="-1">Seleccione ...</option>*@
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50%">
+            <span>Nombre Contacto</span>
+            <input class="form-control" type="text" name="name" id="InputNombreContacto" value="" style="min-width:100%" autocomplete="off" />
+        </td>
+        <td style="width:50%">
+            <span>Estado</span>
+            <select class="form-control" id="SelectEstado" style="min-width:100%">
+                <option value="0">Inactiva</option>
+                <option value="1">Activa</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<table class="table table-borderless">
+    <tr>
+        <td style="width:50%">
+            <button class="btn btn-success">Guardar Cambios</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        ListaCiudad();
+        ListaTipoDocumento();
+        CargarDatosEditarEmpresa();
+    });
+</script>

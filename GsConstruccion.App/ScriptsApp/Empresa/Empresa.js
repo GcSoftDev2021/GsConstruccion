@@ -119,16 +119,42 @@ function CargarDatosDetalleEmpresa() {
         data: {
             Id: Id  
         },
-        success: function (data) {
-            $('#NombreEmpresa').text(data.data[0].NombreEmpresa);
-            $('#TipoDocumento').text(data.data[0].TipoDocumento);
-            $('#NumeroIdentificacion').text(data.data[0].NumeroIdentificacion);
-            $('#Email').text(data.data[0].Email);
-            $('#Telefono').text(data.data[0].Telefono);
-            $('#Direccion').text(data.data[0].Direccion);
-            $('#Ciudad').text(data.data[0].Ciudad);
-            $('#NombreContacto').text(data.data[0].NombreContacto);
-            $('#Estado').text(data.data[0].Estado);
+        success: function (data) {            
+                $('#NombreEmpresa').text(data.data[0].NombreEmpresa);
+                $('#Identificacion').text(data.data[0].Identificacion);
+                $('#Email').text(data.data[0].Email);
+                $('#Telefono').text(data.data[0].Telefono);
+                $('#Direccion').text(data.data[0].Direccion);
+                $('#NombreContacto').text(data.data[0].NombreContacto);
+                $('#Estado').text(data.data[0].Estado);           
         }
     });     
+}
+
+function PaginaEditar() {
+    var Id = gup('Id');
+    window.location.href = '/Empresa/Editar_Empresa' + '?Id=' + Id;
+}
+
+function CargarDatosEditarEmpresa() {
+    var Id = gup('Id');
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empresa/CargarDatosEditarEmpresa',
+        data: {
+            Id: Id
+        },
+        success: function (data) {
+            $('#InputNombre').val(data.data[0].NombreEmpresa);
+            $('#SelectTipoDocumento').val(data.data[0].IdTipoDocumento);
+            $('#InputNumeroDocumento').val(data.data[0].NumeroIdentificacion);
+            $('#InputEmail').val(data.data[0].Email);
+            $('#InputTelefono').val(data.data[0].Telefono);
+            $('#InputDireccion').val(data.data[0].Direccion);
+            $('#SelectCiudad').val(data.data[0].IdCiudad);
+            $('#InputNombreContacto').val(data.data[0].NombreContacto);
+            $('#SelectEstado').val(data.data[0].Activo);
+        }
+    });
 }

@@ -82,6 +82,19 @@ namespace GsConstruccion.Data.DataEntities
             {
                 throw ex;
             }
+        }      
+
+        public List<CargarDatosEditarEmpresa> CargarDatosEditarEmpresa(int Id)
+        {
+            try
+            {
+                var response = _conection.Database.SqlQuery<CargarDatosEditarEmpresa>("SP_CargarDatosEditarEmpresa @Id", new SqlParameter("@Id", Id)).ToList();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

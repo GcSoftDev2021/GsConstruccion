@@ -1609,16 +1609,40 @@ END
 
 go
 
-CREATE PROCEDURE SP_CargarDatosDetalleEmpresa @Id int
+CREATE PROCEDURE [dbo].[SP_CargarDatosEditarEmpresa] @Id int
 AS
 BEGIN
 	SELECT	E.Nombre As NombreEmpresa,
-			T.Descripcion As TipoDocumento,
-			E.Identificacion As NumeroIdentificacion,
+			E.IdTipoDocumento,
+			E.Identificacion As NumeroIdentificacion,,
 			E.Email,
 			E.Telefono,
 			E.Direccion,
-			C.Nombre As Ciudad,
+			E.IdCiudad,
+			E.Contacto As NombreContacto,
+			CASE E.Activo
+			WHEN 1 THEN 'Activa'
+			ELSE 'Inactiva'
+			END as Estado,
+			E.Activo
+	FROM	Empresa E,
+			TipoDocumentoIdentificacion T,
+			Ciudad C
+	WHERE	E.Id = @Id
+			AND	T.Id = E.IdTipoDocumento
+			AND C.Id = E.IdCiudad
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CargarDatosDetalleEmpresa] @Id int
+AS
+BEGIN
+	SELECT	E.Nombre As NombreEmpresa,
+			CAST(T.Nombre As varchar) + ' ' + CAST(E.Identificacion As varchar) As Identificacion,
+			E.Email,
+			E.Telefono,
+			CAST(E.Direccion As varchar)+' '+CAST(C.Nombre As varchar) As Direccion,
 			E.Contacto As NombreContacto,
 			CASE E.Activo
 			WHEN 1 THEN 'Activa'

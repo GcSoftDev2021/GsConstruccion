@@ -53,5 +53,11 @@ namespace GsConstruccion.App.Controllers
             var data = dataEmpresa.CargarDatosDetalleEmpresa(Id);
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult CargarDatosEditarEmpresa(int Id)
+        {
+            var data = dataEmpresa.CargarDatosEditarEmpresa(Id);
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
