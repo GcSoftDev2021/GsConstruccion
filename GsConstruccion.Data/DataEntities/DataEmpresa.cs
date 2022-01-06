@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GsConstruccion.Models.Empresa;
 
 namespace GsConstruccion.Data.DataEntities
 {
@@ -55,6 +56,19 @@ namespace GsConstruccion.Data.DataEntities
                 }
             }
             return resultado;
+        }
+
+        public List<GridEmpresa> GridEmpresa()
+        {
+            try
+            {
+                var response = _conection.Database.SqlQuery<GridEmpresa>("SP_GridEmpresa").ToList();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }
