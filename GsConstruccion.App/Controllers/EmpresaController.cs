@@ -41,5 +41,11 @@ namespace GsConstruccion.App.Controllers
             string resultado = dataEmpresa.CrearEmpresa(IdUser, Modulo, NombreEmpresa, IdTipoDocumento, IdentificacionEmpresa, EmailEmpresa, TelefonoEmpresa, ContactoEmpresa, DireccionEmpresa, IdCiudad);
             return Json(resultado);
         }
+
+        public ActionResult GridEmpresa()
+        {
+            var data = dataEmpresa.GridEmpresa();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
