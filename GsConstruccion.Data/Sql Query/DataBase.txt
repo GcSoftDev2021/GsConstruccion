@@ -1614,7 +1614,7 @@ AS
 BEGIN
 	SELECT	E.Nombre As NombreEmpresa,
 			E.IdTipoDocumento,
-			E.Identificacion As NumeroIdentificacion,,
+			E.Identificacion As NumeroIdentificacion,
 			E.Email,
 			E.Telefono,
 			E.Direccion,
