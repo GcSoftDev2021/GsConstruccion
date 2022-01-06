@@ -1575,22 +1575,15 @@ AS
 BEGIN
 	SELECT	E.Id, 
 			E.Nombre, 
-			E.IdTipoDocumento,
-			T.Nombre As TipoDocumento,
-			E.Identificacion As IdentificacionEmpresa,
+			CAST(T.Nombre As varchar) + ' ' + CAST(E.Identificacion As varchar) As Identificacion,
 			E.Email,
 			E.Telefono,
 			E.Contacto, 
-			E.Direccion As DireccionEmpresa,
-			E.IdCiudad,
-			C.Nombre As NombreCiudad,
-			E.Activo,
+			CAST(E.Direccion As varchar)+' '+CAST(C.Nombre As varchar) As Direccion,
 			CASE E.Activo
-			WHEN 1 THEN 'Activo'
-			ELSE 'Inactivo'
-			END as Estado,
-			dbo.Fun_BuscarNombreUsuario(E.IdUsuarioCrea) As NombreUsuario, 
-			CONVERT(varchar,E.FechaCreacion,20) AS FechaCreacion
+			WHEN 1 THEN 'Activa'
+			ELSE 'Inactiva'
+			END as Estado
 			FROM	Empresa E,
 					TipoDocumentoIdentificacion T,
 					Ciudad C
@@ -1610,4 +1603,31 @@ DECLARE @NombreUsuario VARCHAR(255)
 	FROM	Usuario
 	WHERE	Id = @idUsuario 
 	RETURN @NombreUsuario
+END
+
+---------------------------------------------------------------------------------------
+
+go
+
+CREATE PROCEDURE SP_CargarDatosDetalleEmpresa @Id int
+AS
+BEGIN
+	SELECT	E.Nombre As NombreEmpresa,
+			T.Descripcion As TipoDocumento,
+			E.Identificacion As NumeroIdentificacion,
+			E.Email,
+			E.Telefono,
+			E.Direccion,
+			C.Nombre As Ciudad,
+			E.Contacto As NombreContacto,
+			CASE E.Activo
+			WHEN 1 THEN 'Activa'
+			ELSE 'Inactiva'
+			END as Estado
+	FROM	Empresa E,
+			TipoDocumentoIdentificacion T,
+			Ciudad C
+	WHERE	E.Id = @Id
+			AND	T.Id = E.IdTipoDocumento
+			AND C.Id = E.IdCiudad
 END

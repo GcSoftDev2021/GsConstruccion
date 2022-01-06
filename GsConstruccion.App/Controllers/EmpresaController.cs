@@ -47,5 +47,11 @@ namespace GsConstruccion.App.Controllers
             var data = dataEmpresa.GridEmpresa();
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult CargarDatosDetalleEmpresa(int Id)
+        {
+            var data = dataEmpresa.CargarDatosDetalleEmpresa(Id);
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

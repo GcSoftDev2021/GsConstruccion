@@ -1,4 +1,10 @@
-﻿function BuscarCookie() {
+﻿function gup(name, url) {
+    name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+    var results = new RegExp('[\\?&]' + name + '=?([^&#]*)').exec(url || window.location.href);
+    return results == null ? null : decodeURIComponent(results[1]);
+}
+
+function BuscarCookie() {
     let IdUser = Cookies.get('IdUser');
     if (IdUser == '' || IdUser == undefined || IdUser == null) {
         Swal.fire({
@@ -17,7 +23,6 @@ function CerrarSesion() {
 }
 
 function IrPagina(Url) {
-    debugger;
     let User = Cookies.get('IdUser');
     $.ajax({
         type: 'POST',
