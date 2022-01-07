@@ -146,6 +146,8 @@ function CargarDatosEditarEmpresa() {
             Id: Id
         },
         success: function (data) {
+            ListaCiudad();
+            ListaTipoDocumento();
             $('#InputNombre').val(data.data[0].NombreEmpresa);
             $('#SelectTipoDocumento').val(data.data[0].IdTipoDocumento);
             $('#InputNumeroDocumento').val(data.data[0].NumeroIdentificacion);
