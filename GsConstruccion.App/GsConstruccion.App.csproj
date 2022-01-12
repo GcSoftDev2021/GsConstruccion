@@ -862,6 +862,8 @@
     <Content Include="Sources\ImagesApp\IconoEnConstrucción.png" />
     <Content Include="Sources\ImagesApp\Login.png" />
     <Content Include="Sources\ImagesApp\Logo GCSoftDev.png" />
+    <Content Include="Sources\ImagesApp\Logo_gs1.png" />
+    <Content Include="Sources\ImagesApp\Logo_gs2.png" />
     <Content Include="Sources\ImagesApp\Usuario.png" />
     <Content Include="Sources\ImagesPerfilUsers\Usuario.png" />
     <Content Include="Sources\ImagesProduct\ImageProductDefault.png" />

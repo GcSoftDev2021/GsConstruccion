@@ -29,12 +29,12 @@ unique(Usuario)
 
 ALTER TABLE Usuario ADD CONSTRAINT FK_IdRol FOREIGN KEY (IdRol) references Rol(Id)
 
-SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin' ), 2) 
-SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Invitado' ), 2) 
-SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin2021*' ), 2) 
-SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Invitado2021' ), 2) 
-DBCC CHECKIDENT ('Usuario', RESEED, 0)
-delete from Usuario
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin' ), 2) 
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Invitado' ), 2) 
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin2021*' ), 2) 
+--SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Invitado2021' ), 2) 
+--DBCC CHECKIDENT ('Usuario', RESEED, 0)
+--delete from Usuario
 
 go
 

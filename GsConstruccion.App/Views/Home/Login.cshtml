@@ -3,14 +3,20 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
+<div>
+    <label style="margin-left:auto;margin-right:auto;margin-top:40px; font-size:180px; font-weight:bold"><strong>GS</strong></label>
+</div>                                                                                                                              
+<div style="margin-top:-50px">
+    <label style="margin-left:auto;margin-right:auto;margin-top:-150px; font-size:20px">G e s t i o n &nbsp;&nbsp; S y s t e m s</label>
+</div>
 
 <div>
     <table class="table table-borderless" style="align-content:center">
         <tr>
-            <td><h2 style="margin-left:auto;margin-right:auto;margin-top:50px"><strong>GestionSystem Softc</strong></h2></td>
+            <td></td>
         </tr>
         <tr>
-            <td><img src="~/Sources/ImagesApp/Login.png" alt="" style="height:180px" /></td>
+            <td><h5 style="margin-left:auto;margin-right:auto; margin-top:30px"><strong>Inicio Sesión</strong></h5></td>
         </tr>
         <tr>
             <td><input class="form-control" style="margin-left:auto;margin-right:auto" type="text" name="name" id="InputUsuario" value="" placeholder="Usuario" autocomplete="off" /></td>
@@ -21,8 +27,8 @@
         <tr>
             <td><button class="btn btn-primary" onclick="Ingresar()">Ingresar</button></td>
         </tr>
-        @*<tr>
-                <td><a href="/Login/RecuperarPassword">Recuperar Contraseña</a></td>
-            </tr>*@
+        <tr>
+            <td><a href="">Recuperar Contraseña</a></td>
+        </tr>
     </table>
 </div>
