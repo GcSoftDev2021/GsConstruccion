@@ -12,7 +12,7 @@ namespace GsConstruccion.Data.DataEntities
     public class DataLogin
     {
         readonly GsConstruccionEntities _conection = new GsConstruccionEntities();
-        //private readonly DataRol dataRol = new DataRol();
+        private readonly DataRol dataRol = new DataRol();
         public string IniciarSesion(string Usuario, string Password)
         {
             string resultado = String.Empty;

@@ -67,9 +67,15 @@
     </Compile>
     <Compile Include="DataEntities\DataCiudad.cs" />
     <Compile Include="DataEntities\DataEmpresa.cs" />
+    <Compile Include="DataEntities\DataHome.cs" />
     <Compile Include="DataEntities\DataLogin.cs" />
+    <Compile Include="DataEntities\DataModulo.cs" />
+    <Compile Include="DataEntities\DataPais.cs" />
     <Compile Include="DataEntities\DataRol.cs" />
+    <Compile Include="DataEntities\DataSucursal.cs" />
     <Compile Include="DataEntities\DataTipoDocumento.cs" />
+    <Compile Include="DataEntities\DataUsersManagement.cs" />
+    <Compile Include="DataEntities\DataUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

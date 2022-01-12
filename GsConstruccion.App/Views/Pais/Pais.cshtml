@@ -1,0 +1,100 @@
+﻿
+
+@{
+    ViewBag.Title = "Pais";
+}
+
+<h4>Pais</h4>
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearPais">Nuevo País</button>
+<div style="margin-top:20px; background-color:white;border-radius:15px">
+    <div style="padding-top:20px">
+        <h5 style="text-align:center">LISTA DE PAISES</h5>
+    </div>
+    <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+        <table id="gridPais" class="table" style="width:100%"></table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCrearPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Nuevo País</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Nombre Pais</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputNombrePais" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CrearPais()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalEditarPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar País</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdPais" hidden></label>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Nombre Pais</span>
+                            <input class="form-control" type="text" name="name" value="" id="EInputNombrePais" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Estado</span>
+                            <select class="form-control" id="SelectEstadoPais">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosPais()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="ModalEliminarPais" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar País</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdDPais" hidden></label>
+                <label id="MensajeEliminarPais"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarPais()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridPais();
+    });
+</script>

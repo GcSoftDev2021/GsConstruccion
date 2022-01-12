@@ -119,7 +119,13 @@
     <Content Include="ScriptsApp\Empresa\Empresa.js" />
     <Content Include="ScriptsApp\Home\Home.js" />
     <Content Include="ScriptsApp\Login\Login.js" />
+    <Content Include="ScriptsApp\Modulo\Modulo.js" />
+    <Content Include="ScriptsApp\Pais\Pais.js" />
+    <Content Include="ScriptsApp\Rol\Rol.js" />
+    <Content Include="ScriptsApp\Sucursal\Sucursal.js" />
     <Content Include="ScriptsApp\TipoDocumento\TipoDocumento.js" />
+    <Content Include="ScriptsApp\UsersManagement\UsersManagement.js" />
+    <Content Include="ScriptsApp\Usuario\Usuario.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -893,7 +899,13 @@
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
+    <Compile Include="Controllers\UsersManagementController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -908,12 +920,18 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\Empresa\Empresa.cshtml" />
-    <Content Include="Views\Empresa\Crear_Empresa.cshtml" />
-    <Content Include="Views\Empresa\Lista_Empresa.cshtml" />
-    <Content Include="Views\Empresa\Editar_Empresa.cshtml" />
-    <Content Include="Views\Empresa\Detalle_Empresa.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Pais\Pais.cshtml" />
+    <Content Include="Views\Ciudad\Ciudad.cshtml" />
+    <Content Include="Views\Rol\Rol.cshtml" />
+    <Content Include="Views\Sucursal\Sucursal.cshtml" />
+    <Content Include="Views\TipoDocumento\TipoDocumento.cshtml" />
+    <Content Include="Views\UsersManagement\Users.cshtml" />
+    <Content Include="Views\UsersManagement\PermisoUsers.cshtml" />
+    <Content Include="Views\UsersManagement\RolUsers.cshtml" />
+    <Content Include="Views\Usuario\InformacionUsuario.cshtml" />
+    <Content Include="Views\Modulo\Modulo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -924,8 +942,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Ciudad\" />
-    <Folder Include="Views\TipoDocumento\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

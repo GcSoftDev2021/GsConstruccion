@@ -16,26 +16,6 @@ namespace GsConstruccion.App.Controllers
             return View();
         }
 
-        public ActionResult Crear_Empresa()
-        {
-            return View();
-        }
-
-        public ActionResult Lista_Empresa()
-        {
-            return View();
-        }
-
-        public ActionResult Editar_Empresa()
-        {
-            return View();
-        }
-
-        public ActionResult Detalle_Empresa()
-        {
-            return View();
-        }
-
         public JsonResult CrearEmpresa(string IdUser, string Modulo, string NombreEmpresa, int IdTipoDocumento, string IdentificacionEmpresa, string EmailEmpresa, string TelefonoEmpresa, string ContactoEmpresa, string DireccionEmpresa, int IdCiudad)
         {
             string resultado = dataEmpresa.CrearEmpresa(IdUser, Modulo, NombreEmpresa, IdTipoDocumento, IdentificacionEmpresa, EmailEmpresa, TelefonoEmpresa, ContactoEmpresa, DireccionEmpresa, IdCiudad);
@@ -48,16 +28,22 @@ namespace GsConstruccion.App.Controllers
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CargarDatosDetalleEmpresa(int Id)
+        public JsonResult GuardarCambiosEmpresa(string IdUser, string Modulo, int IdEmpresa, string NombreEmpresa, int IdTipoDocumento, string IdentificacionEmpresa, string EmailEmpresa, string TelefonoEmpresa, string ContactoEmpresa, string DireccionEmpresa, int IdCiudad, int Activo)
         {
-            var data = dataEmpresa.CargarDatosDetalleEmpresa(Id);
-            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            var resultado = dataEmpresa.GuardarCambiosEmpresa(IdUser, Modulo, IdEmpresa, NombreEmpresa, IdTipoDocumento, IdentificacionEmpresa, EmailEmpresa, TelefonoEmpresa, ContactoEmpresa, DireccionEmpresa, IdCiudad, Activo);
+            return Json(resultado);
         }
 
-        public ActionResult CargarDatosEditarEmpresa(int Id)
+        public JsonResult ListaEmpresa()
         {
-            var data = dataEmpresa.CargarDatosEditarEmpresa(Id);
-            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            var resultado = dataEmpresa.ListaEmpresa();
+            return Json(resultado);
+        }
+
+        public JsonResult EliminarEmpresa(string IdUser, string Modulo, int IdEmpresa)
+        {
+            string resultado = dataEmpresa.EliminarEmpresa(IdUser, Modulo, IdEmpresa);
+            return Json(resultado);
         }
     }
 }

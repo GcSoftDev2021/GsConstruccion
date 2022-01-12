@@ -1,0 +1,104 @@
+﻿
+
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<h4>Información Usuario</h4>
+
+<div>
+    <table class="table table-borderless" style="margin-top:20px">
+        <tr>
+            <td id="ImagePerfilUsuario"></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary btn-sm">Cambiar Imagen Perfil</button></td>
+        </tr>
+    </table>
+    <table class="table table-borderless" style="width:auto; margin-top:20px">
+        <tr>
+            <td><label><strong>Usuario:</strong></label></td>
+            <td><label id="Usuario"></label></td>
+        </tr>
+        <tr>
+            <td><label><strong>Rol:</strong></label></td>
+            <td><label id="RolUsuario"></label></td>
+        </tr>
+        <tr>
+            <td><label><strong>Nombre:</strong></label></td>
+            <td><label id="NombreUsuario"></label></td>
+        </tr>
+        <tr>
+            <td><label><strong>Email:</strong></label></td>
+            <td><label id="EmailUsuario"></label></td>
+        </tr>
+        <tr>
+            <td><label><strong>Fecha Creación:</strong></label></td>
+            <td><label id="FechaCreacion"></label></td>
+        </tr>
+        <tr>
+            <td><label><strong>Fecha Limite Ingreso:</strong></label></td>
+            <td><label id="Vigencia"></label></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCambiarPasswordUsuario">Cambiar Contraseña</button></td>
+        </tr>
+    </table>
+    <div style="margin-top:20px; background-color:white;border-radius:15px">
+        <div style="padding-top:20px">
+            <h5 style="text-align:center">HISTORIAL DE INGRESOS</h5>
+        </div>
+        <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+            <table id="gridHistorialIngresoUsuario" class="table" style="width:100%"></table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCambiarPasswordUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Cambiar Contraseña</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Contraseña Anterior</span>
+                            <input class="form-control" type="password" name="name" value="" id="InputPasswordAnterior" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Nueva Contraseña</span>
+                            <input class="form-control" type="password" name="name" value="" id="InputPasswordNuevo" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Confirmar Contraseña</span>
+                            <input class="form-control" type="password" name="name" value="" id="InputPasswordNuevoVerificacion" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CambiarPaswwordUsuario()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        DatosUsuario();
+        GridHistorialIngresoUsuario();
+    });
+</script>
+
+
+

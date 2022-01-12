@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Modulo";
+}
+
+<h4>Modulo</h4>
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearModulo">Nuevo Modulo</button>
+<div style="margin-top:20px; background-color:white;border-radius:15px">
+    <div style="padding-top:20px">
+        <h5 style="text-align:center">LISTA DE MODULOS</h5>
+    </div>
+    <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+        <table id="gridModulo" class="table" style="width:100%"></table>
+    </div>
+</div>
+
+<!-- Modal Crear -->
+<div class="modal fade" id="ModalCrearModulo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Nuevo Modulo</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Nombre Modulo</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputNombreModulo" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Ruta Página</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputRutaPagina" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CrearModulo()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="ModalEditarModulo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar Modulo</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdModulo" hidden></label>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Nombre Modulo</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputENombreModulo" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Ruta Página</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputERutaPagina" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Estado</span>
+                            <select class="form-control" id="SelectEstadoModulo">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosModulo()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="ModalEliminarModulo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Modulo</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdDModulo" hidden></label>
+                <label id="MensajeEliminarModulo"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarModulo()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridModulo();
+    });
+</script>
+

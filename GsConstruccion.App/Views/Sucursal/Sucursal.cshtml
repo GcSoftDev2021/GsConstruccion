@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "Sucursal";
+}
+
+<h4>Sucursal</h4>
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearSucursal">Nueva Sucursal</button>
+<div style="margin-top:20px; background-color:white;border-radius:15px">
+    <div style="padding-top:20px">
+        <h5 style="text-align:center">LISTA DE SUCURSALES</h5>
+    </div>
+    <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+        <table id="gridSucursal" class="table" style="width:100%"></table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCrearSucursal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Nueva Sucursal</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Empresa</span>
+                            <select class="form-control" id="SelectEmpresa">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Nombre Sucursal</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputNombreSucursal" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Email</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEmailSucursal" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Telefono</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputTelefonoSucursal" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Contacto</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputContactoSucursal" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Dirección</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputDireccionSucursal" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Ciudad</span>
+                            <select class="form-control" id="SelectCiudad">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CrearSucursal()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalEditarSucursal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar Sucursal</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdSucursal" hidden></label>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Empresa</span>
+                            <select class="form-control" id="SelectEEmpresa">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Nombre Sucursal</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputENombreSucursal" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Email</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEEmailSucursal" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Telefono</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputETelefonoSucursal" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Contacto</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEContactoSucursal" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Dirección</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEDireccionSucursal" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Ciudad</span>
+                            <select class="form-control" id="SelectECiudad">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Estado</span>
+                            <select class="form-control" id="SelectEstadoSucursal">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosSucursal()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="ModalEliminarSucursal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Sucursal</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdDSucursal" hidden></label>
+                <label id="MensajeEliminarSucursal"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarSucursal()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridSucursal();
+        ListaEmpresa();
+        ListaEEmpresa();
+        ListaCiudad();
+        ListaECiudad();
+    });
+</script>
+
+
+
+
+
+
+

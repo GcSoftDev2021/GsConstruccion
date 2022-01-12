@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "Permiso Usuarios";
+}
+
+
+<h4>Permiso Usuario</h4>
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearPermiso">Nuevo Permiso</button>
+<div style="margin-top:20px; background-color:white;border-radius:15px">
+    <div style="padding-top:20px">
+        <h5 style="text-align:center">LISTA PERMISOS USUARIOS</h5>
+    </div>
+    <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+        <table id="gridPermisoUsuario" class="table" style="width:100%"></table>
+    </div>
+</div>
+
+<!-- Modal Crear -->
+<div class="modal fade" id="ModalCrearPermiso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Nuevo Permiso</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Usuario</span>
+                            <select id="SelectUsuario" class="form-control">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Modulo</span>
+                            <select id="SelectModulo" class="form-control">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:center">
+                    <label>Permisos Modulo / Página</label>
+                </div>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Visualizar</span>
+                            <select id="SelectAccionLeer" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Crear</span>
+                            <select id="SelectAccionCrear" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Editar</span>
+                            <select id="SelectAccionEditar" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Eliminar</span>
+                            <select id="SelectAccionEliminar" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CrearPermisoUsuario()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="ModalEditarPermisoUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar Permiso Usuario</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdPermisoUsuario" hidden></label>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Usuario</span>
+                            <input class="form-control" type="text" name="name" value="" id="EInputNombreUsuario" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Modulo / Página</span>
+                            <input class="form-control" type="text" name="name" value="" id="ENombreModulo" disabled />
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:center">
+                    <label>Permisos Modulo / Página</label>
+                </div>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Visualizar</span>
+                            <select id="SelectEAccionLeer" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Crear</span>
+                            <select id="SelectEAccionCrear" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Editar</span>
+                            <select id="SelectEAccionEditar" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Eliminar</span>
+                            <select id="SelectEAccionEliminar" class="form-control">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosPermisoUsuario()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="ModalEliminarPermisoUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Permiso</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdDPermisoUsuario" hidden></label>
+                <label id="MensajeEliminarPermiso"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarPermisoUsuario()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        GridPermisoUsuario();
+        ListaUsuario();
+        ListaModulo();
+    });
+</script>
+
+
+
+
+

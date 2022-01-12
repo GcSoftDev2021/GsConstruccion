@@ -9,13 +9,8 @@ namespace GsConstruccion.App.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly DataLogin dataLogin = new DataLogin();         
-
-        // GET: Login
-        public ActionResult Login()
-        {
-            return View();
-        }
+        private readonly DataLogin dataLogin = new DataLogin();
+        // GET: Login          
 
         public JsonResult IniciarSesion(string Usuario, string Password)
         {

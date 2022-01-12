@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - GSC</title>
+    <title>@ViewBag.Title - GestionSystem</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/popper.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <link href="~/Scripts/DataTables/datatables.css" rel="stylesheet" />
     <script src="~/Scripts/DataTables/datatables.js"></script>
     <script src="~/Scripts/jquery-3.6.0.js"></script>
@@ -15,15 +14,23 @@
     <script src="~/Scripts/Sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="~/Scripts/Sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="~/Scripts/js-cookie/js.cookie.js"></script>
-    <script src="~/ScriptsApp/Home/Home.js"></script>
+    <script src="~/ScriptsApp/Categoria/Categoria.js"></script>
     <script src="~/ScriptsApp/Ciudad/Ciudad.js"></script>
     <script src="~/ScriptsApp/Empresa/Empresa.js"></script>
+    <script src="~/ScriptsApp/Home/Home.js"></script>
+    <script src="~/ScriptsApp/Modulo/Modulo.js"></script>
+    <script src="~/ScriptsApp/Pais/Pais.js"></script>
+    <script src="~/ScriptsApp/Producto/Producto.js"></script>
+    <script src="~/ScriptsApp/Rol/Rol.js"></script>
+    <script src="~/ScriptsApp/Sucursal/Sucursal.js"></script>
     <script src="~/ScriptsApp/TipoDocumento/TipoDocumento.js"></script>
+    <script src="~/ScriptsApp/Usuario/Usuario.js"></script>
+    <script src="~/ScriptsApp/UsersManagement/UsersManagement.js"></script>
 </head>
-<body style="background-color:#F3F0F3">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body style="background-color:#f3f3f3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-100 bg-black">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Home/Inicio" style="color:white; font-weight:bold">GSC <label style="font-size:9px">V 1.0</label></a>
+            <a class="navbar-brand" href="/Home/Inicio" style="color:white">GSC <label style="font-size:8px">V 1.0</label></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +41,7 @@
                             Inicio
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @*<li><a class="dropdown-item" href="javascript:IrPagina('/Usuario/InformacionUsuario')">Información Usuario</a></li>*@
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Usuario/InformacionUsuario')">Información Usuario</a></li>
                             <li><a class="dropdown-item" href="javascript:CerrarSesion()">Cerrar Sesión</a></li>
                         </ul>
                     </li>
@@ -43,7 +50,20 @@
                             Empresa
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/Empresa/Empresa">Empresa</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Empresa/Empresa')">Empresa</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Sucursal/Sucursal')">Sucursal</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Proveedor/Proveedor')">Proveedor</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                            Cliente
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Cliente/Cliente')">Cliente</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Cotizacion/Cotizacion')">Cotización</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Venta/Venta')">Venta</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -51,43 +71,69 @@
                             Empleado
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/Empleado/Empleado">Empleado</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Empleado/Empleado')">Empleado</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/DiaLaborado/DiaLaborado')">Dia Laborado</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/HoraExtra/'HoraExtra)">Hora Extra</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Permiso/'Permiso)">Permiso</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Prestamo/'Prestamo)">Prestamo</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
-                            Nómina
+                            Contabilidad
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/Empleado/Empleado">Empleado</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Nomina/Nomina')">Nomina</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
-                            Almacén
+                            Inventario
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/Empleado/Empleado">Empleado</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Categoria/Categoria')">Categoria</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Producto/Producto')">Producto</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/IngresoProducto/IngresoProducto')">Ingreso Producto</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/SalidaProducto/SalidaProducto')">Salida Producto</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Inventario/Inventario')">Inventario</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                            Administración
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/UsersManagement/Users')">Usuario</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/UsersManagement/PermisoUsers')">Permiso</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/UsersManagement/RolUsers')">Rol</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Modulo/Modulo')">Modulo</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Pais/Pais')">País</a></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/Ciudad/Ciudad')">Ciudad</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:IrPagina('/TipoDocumento/TipoDocumento')">Tipo Documento</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
 
+    </nav>
     <div class="container body-content" style="margin-top:30px">
         @RenderBody()
-
-        @*<hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>*@
+        <hr />
+        <footer>
+            <p style="font-size:10px"><strong>GestionSystem Construction Soft Application - By GC Software Developing &copy; @DateTime.Now.Year</strong></p>
+        </footer>
     </div>
-    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
     <script src="~/Scripts/DataTables/datatables.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 <script>
     $(document).ready(function () {

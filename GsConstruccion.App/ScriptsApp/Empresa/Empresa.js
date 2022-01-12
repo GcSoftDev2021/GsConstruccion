@@ -1,22 +1,24 @@
-﻿function CrearEmpresa() {
+﻿
+
+function CrearEmpresa() {
     let Modulo = '/Empresa/Empresa';
-    let User = Cookies.get('IdUser');
-    let NombreEmpresa = $('#InputNombre').val();
+    let User = Cookies.get('IdUserGestionSystem');
+    let NombreEmpresa = $('#InputNombreEmpresa').val();
     let IdTipoDocumento = $('#SelectTipoDocumento').val();
-    let IdentificacionEmpresa = $('#InputNumeroDocumento').val();
-    let EmailEmpresa = $('#InputEmail').val();
-    let TelefonoEmpresa = $('#InputTelefono').val();
-    let ContactoEmpresa = $('#InputNombreContacto').val();
-    let DireccionEmpresa = $('#InputDireccion').val();
+    let IdentificacionEmpresa = $('#InputNumeroIdentificacionEmpresa').val();
+    let EmailEmpresa = $('#InputEmailEmpresa').val();
+    let TelefonoEmpresa = $('#InputTelefonoEmpresa').val();
+    let ContactoEmpresa = $('#InputContactoEmpresa').val();
+    let DireccionEmpresa = $('#InputDireccionEmpresa').val();
     let IdCiudad = $('#SelectCiudad').val();
     if (NombreEmpresa == null || NombreEmpresa == '' || NombreEmpresa == undefined) {
-        Swal.fire('GS Construcción dice:', 'Ingrese Nombre de la Empresa', 'info');
+        Swal.fire('GestionSystem', 'Ingrese Nombre de la Empresa', 'info');
     } else if (IdTipoDocumento == null || IdTipoDocumento == '' || IdTipoDocumento == undefined || IdTipoDocumento == -1) {
-        Swal.fire('GS Construcción dice:', 'Seleccione el Tipo de Documento', 'info');
+        Swal.fire('GestionSystem', 'Seleccione el Tipo de Documento', 'info');
     } else if (IdentificacionEmpresa == null || IdentificacionEmpresa == '' || IdentificacionEmpresa == undefined) {
-        Swal.fire('GS Construcción dice:', 'Ingrese la Identificación de la Empresa', 'info');
+        Swal.fire('GestionSystem', 'Ingrese la Identificación de la Empresa', 'info');
     } else if (IdCiudad == null || IdCiudad == '' || IdCiudad == undefined || IdCiudad == -1) {
-        Swal.fire('GS Construcción dice:', 'Seleccione la Ciudad', 'info');
+        Swal.fire('GestionSystem', 'Seleccione la Ciudad', 'info');
     } else {
         $.ajax({
             type: 'POST',
@@ -38,19 +40,20 @@
                 valor = resultado.split('__');
                 if (valor[0] == 'OK') {
                     Swal.fire({
-                        title: 'GS Construcción dice:',
+                        title: 'GestionSystem',
                         text: valor[1],
                         icon: 'success',
                     }).then((result) => {
                         location.reload();
                     })
                 } else {
-                    Swal.fire('GS Construcción dice:', valor[1], 'info');
+                    Swal.fire('GestionSystem', valor[1], 'info');
                 }
             }
         });
     }
 }
+
 
 function GridEmpresa() {
     let datatable = $('#gridEmpresa').DataTable({
@@ -65,15 +68,43 @@ function GridEmpresa() {
         columns: [
             { "data": "Id", title: "Id", "visible": false },
             { "data": "Nombre", title: "Empresa" },
-            { "data": "Identificacion", title: "Identificacion"},           
-            { "data": "Email", title: "Email", "visible": false },
-            { "data": "Telefono", title: "Telefono" },
-            { "data": "Contacto", title: "Contacto", "visible": false },
-            { "data": "Direccion", title: "Direccion"},  
-            { "data": "Estado", title: "Estado" },            
+            { "data": "IdTipoDocumento", title: "IdTipoDocumento", "visible": false },
+            { "data": "TipoDocumento", title: "TipoDocumento", "visible": false },
+            { "data": "IdentificacionEmpresa", title: "Identificacion", "visible": false },
             {
                 data: null,
-                defaultContent: '<button class="DetalleEmpresa btn btn-warning btn-sm">Detalle</button>',
+                render: function (data, type, row) {
+                    return row.TipoDocumento + ' ' + row.IdentificacionEmpresa;
+                },
+                title: "Identificación"
+            },
+            { "data": "Email", title: "Email" },
+            { "data": "Telefono", title: "Telefono" },
+            { "data": "Contacto", title: "Contacto" },
+            { "data": "DireccionEmpresa", title: "DireccionEmpresa", "visible": false },
+            { "data": "IdCiudad", title: "IdCiudad", "visible": false },
+            { "data": "NombreCiudad", title: "NombreCiudad", "visible": false },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return row.DireccionEmpresa + ' ' + row.NombreCiudad;
+                },
+                title: "Direccion"
+            },
+            { "data": "Activo", title: "Activo", "visible": false },
+            { "data": "Estado", title: "Estado" },
+            { "data": "NombreUsuario", title: "Usuario Creador", "visible": true },
+            { "data": "FechaCreacion", title: "Fecha Creación", "visible": true },
+            {
+                data: null,
+                defaultContent: '<button class="EditarEmpresa btn btn-primary btn-sm">Editar</button>',
+                className: '',
+                orderable: false,
+                width: 100,
+            },
+            {
+                data: null,
+                defaultContent: '<button class="EliminarEmpresa btn btn-danger btn-sm">Eliminar</button>',
                 className: '',
                 orderable: false,
                 width: 100,
@@ -92,71 +123,164 @@ function GridEmpresa() {
             ['5 Filas', '25 Filas', '50 Filas', 'Ver Todo']
         ],
     });
-   
-    //$('#gridEmpresa').on('click', '.EliminarEmpresa', function () {
-    //    let data = datatable.row($(this).parents()).data();
-    //    $('#ModalEliminarEmpresa').modal('show');
-    //    $('#IdDEmpresa').text(data.Id);
-    //    $('#MensajeEliminarEmpresa').text('Esta seguro de Eliminar la Empresa (' + data.Nombre + ') ?');
-    //})
-
-    $('#gridEmpresa').on('click', '.DetalleEmpresa', function () {
+    $('#gridEmpresa').on('click', '.EditarEmpresa', function () {
         let data = datatable.row($(this).parents()).data();
-        PaginaDetalle(data.Id);
+        $('#ModalEditarEmpresa').modal('show');
+        $('#IdEmpresa').text(data.Id);
+        $('#InputENombreEmpresa').val(data.Nombre);
+        $('#SelectETipoDocumento').val(data.IdTipoDocumento);
+        $('#InputENumeroIdentificacionEmpresa').val(data.IdentificacionEmpresa);
+        $('#InputEEmailEmpresa').val(data.Email);
+        $('#InputETelefonoEmpresa').val(data.Telefono);
+        $('#InputEContactoEmpresa').val(data.Contacto);
+        $('#InputEDireccionEmpresa').val(data.DireccionEmpresa);
+        $('#SelectECiudad').val(data.IdCiudad);
+        $('#SelectEstadoEmpresa').val(data.Activo);
+
+
+    });
+    $('#gridEmpresa').on('click', '.EliminarEmpresa', function () {
+        let data = datatable.row($(this).parents()).data();
+        $('#ModalEliminarEmpresa').modal('show');
+        $('#IdDEmpresa').text(data.Id);
+        $('#MensajeEliminarEmpresa').text('Esta seguro de Eliminar la Empresa (' + data.Nombre + ') ?');
     })
 }
 
-function PaginaDetalle(Id) {
-    window.location.href = '/Empresa/Detalle_Empresa' + '?Id=' + Id;
+function GuardarCambiosEmpresa() {
+    let Modulo = '/Empresa/Empresa';
+    let User = Cookies.get('IdUserGestionSystem');
+    let IdEmpresa = $('#IdEmpresa').text();
+    let NombreEmpresa = $('#InputENombreEmpresa').val();
+    let IdTipoDocumento = $('#SelectETipoDocumento').val();
+    let IdentificacionEmpresa = $('#InputENumeroIdentificacionEmpresa').val();
+    let EmailEmpresa = $('#InputEEmailEmpresa').val();
+    let TelefonoEmpresa = $('#InputETelefonoEmpresa').val();
+    let ContactoEmpresa = $('#InputEContactoEmpresa').val();
+    let DireccionEmpresa = $('#InputEDireccionEmpresa').val();
+    let IdCiudad = $('#SelectECiudad').val();
+    let Activo = $('#SelectEstadoEmpresa').val();
+    if (NombreEmpresa == null || NombreEmpresa == '' || NombreEmpresa == undefined) {
+        Swal.fire('GestionSystem', 'Ingrese Nombre de la Empresa', 'info');
+    } else if (IdTipoDocumento == null || IdTipoDocumento == '' || IdTipoDocumento == undefined || IdTipoDocumento == -1) {
+        Swal.fire('GestionSystem', 'Seleccione el Tipo de Documento', 'info');
+    } else if (IdentificacionEmpresa == null || IdentificacionEmpresa == '' || IdentificacionEmpresa == undefined) {
+        Swal.fire('GestionSystem', 'Ingrese la Identificación de la Empresa', 'info');
+    } else if (IdCiudad == null || IdCiudad == '' || IdCiudad == undefined || IdCiudad == -1) {
+        Swal.fire('GestionSystem', 'Seleccione la Ciudad', 'info');
+    } else {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/Empresa/GuardarCambiosEmpresa',
+            data: {
+                IdUser: User,
+                Modulo: Modulo,
+                IdEmpresa: IdEmpresa,
+                NombreEmpresa: NombreEmpresa,
+                IdTipoDocumento: IdTipoDocumento,
+                IdentificacionEmpresa: IdentificacionEmpresa,
+                EmailEmpresa: EmailEmpresa,
+                TelefonoEmpresa: TelefonoEmpresa,
+                ContactoEmpresa: ContactoEmpresa,
+                DireccionEmpresa: DireccionEmpresa,
+                IdCiudad: IdCiudad,
+                Activo: Activo
+            },
+            success: function (resultado) {
+                valor = resultado.split('__');
+                if (valor[0] == 'OK') {
+                    Swal.fire({
+                        title: 'GestionSystem',
+                        text: valor[1],
+                        icon: 'success',
+                    }).then((result) => {
+                        location.reload();
+                    })
+                } else {
+                    Swal.fire('GestionSystem', valor[1], 'info');
+                }
+            }
+        });
+    }
 }
 
-function CargarDatosDetalleEmpresa() {    
-    var Id = gup('Id');
+function ListaEmpresa() {
+
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Empresa/CargarDatosDetalleEmpresa',
-        data: {
-            Id: Id  
+        url: '/Empresa/ListaEmpresa',
+        data: {},
+        success: function (resultado) {
+            var contador = 0;
+            if (resultado.length === 0) {
+                $("#SelectEmpresa").append('<option value="">No hay Datos</option>');
+            } else {
+                $("#SelectEmpresa").empty().append('<option value="-1">Seleccione Empresa</option>');
+                $.each(resultado, function () {
+                    $("#SelectEmpresa").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
         },
-        success: function (data) {            
-                $('#NombreEmpresa').text(data.data[0].NombreEmpresa);
-                $('#Identificacion').text(data.data[0].Identificacion);
-                $('#Email').text(data.data[0].Email);
-                $('#Telefono').text(data.data[0].Telefono);
-                $('#Direccion').text(data.data[0].Direccion);
-                $('#NombreContacto').text(data.data[0].NombreContacto);
-                $('#Estado').text(data.data[0].Estado);           
-        }
-    });     
+    });
 }
 
-function PaginaEditar() {
-    var Id = gup('Id');
-    window.location.href = '/Empresa/Editar_Empresa' + '?Id=' + Id;
-}
 
-function CargarDatosEditarEmpresa() {
-    var Id = gup('Id');
+function ListaEEmpresa() {
+
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Empresa/CargarDatosEditarEmpresa',
-        data: {
-            Id: Id
+        url: '/Empresa/ListaEmpresa',
+        data: {},
+        success: function (resultado) {
+            var contador = 0;
+            if (resultado.length === 0) {
+                $("#SelectEEmpresa").append('<option value="">No hay Datos</option>');
+            } else {
+                $("#SelectEEmpresa").empty().append('<option value="-1">Seleccione Empresa</option>');
+                $.each(resultado, function () {
+                    $("#SelectEEmpresa").append('<option value="' + resultado[contador].Id + '">' + resultado[contador].Nombre + '</option>');
+                    contador++;
+                });
+            }
         },
-        success: function (data) {
-            ListaCiudad();
-            ListaTipoDocumento();
-            $('#InputNombre').val(data.data[0].NombreEmpresa);
-            $('#SelectTipoDocumento').val(data.data[0].IdTipoDocumento);
-            $('#InputNumeroDocumento').val(data.data[0].NumeroIdentificacion);
-            $('#InputEmail').val(data.data[0].Email);
-            $('#InputTelefono').val(data.data[0].Telefono);
-            $('#InputDireccion').val(data.data[0].Direccion);
-            $('#SelectCiudad').val(data.data[0].IdCiudad);
-            $('#InputNombreContacto').val(data.data[0].NombreContacto);
-            $('#SelectEstado').val(data.data[0].Activo);
+    });
+}
+
+function EliminarEmpresa() {
+    debugger
+    let IdUser = Cookies.get('IdUserGestionSystem');
+    let Modulo = '/Empresa/Empresa';
+    let IdEmpresa = $('#IdDEmpresa').text();
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Empresa/EliminarEmpresa',
+        data: {
+            IdUser: IdUser,
+            Modulo: Modulo,
+            IdEmpresa: IdEmpresa
+        },
+        success: function (resultado) {
+            valor = resultado.split('__');
+            if (valor[0] == 'OK') {
+                Swal.fire({
+                    title: 'GestionSystem',
+                    text: valor[1],
+                    icon: 'success',
+                }).then((result) => {
+                    location.reload();
+                })
+            } else {
+                Swal.fire('GestionSystem', valor[1], 'info');
+            }
         }
     });
 }
+
+
+
+

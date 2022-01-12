@@ -3,18 +3,195 @@
     ViewBag.Title = "Empresa";
 }
 
-<h2>Empresa</h2>
+<h4>Empresa</h4>
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearEmpresa">Nueva Empresa</button>
+<div style="margin-top:20px; background-color:white;border-radius:15px">
+    <div style="padding-top:20px">
+        <h5 style="text-align:center">LISTA DE EMPRESAS</h5>
+    </div>
+    <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+        <table id="gridEmpresa" class="table" style="width:100%"></table>
+    </div>
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="ModalCrearEmpresa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Nueva Empresa</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Nombre Empresa</span>
+                            <input class="form-control" style="min-width:100%" type="text" name="name" value="" id="InputNombreEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Tipo Documento</span>
+                            <select class="form-control" id="SelectTipoDocumento">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Numero Identificación</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputNumeroIdentificacionEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Email</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEmailEmpresa" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Telefono</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputTelefonoEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Contacto</span>
+                            <input class="form-control" style="min-width:100%" type="text" name="name" value="" id="InputContactoEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Dirección</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputDireccionEmpresa" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Ciudad</span>
+                            <select class="form-control" id="SelectCiudad">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CrearEmpresa()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<table class="table table-borderless">
-    <tr>
-        <td style="width:50%">
-            <a href="/Empresa/Crear_Empresa" class="btn btn-success" style="min-width:100%">Nueva Empresa</a>
-        </td>
-        <td style="width:50%">
-            <a href="/Empresa/Lista_Empresa" class="btn btn-success" style="min-width:100%">Ver Empresas</a>
-        </td>
-    </tr>
-</table>
+<div class="modal fade" id="ModalEditarEmpresa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar Empresa</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdEmpresa" hidden></label>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Nombre Empresa</span>
+                            <input class="form-control" style="min-width:100%" type="text" name="name" value="" id="InputENombreEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Tipo Documento</span>
+                            <select class="form-control" id="SelectETipoDocumento">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Numero Identificación</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputENumeroIdentificacionEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Email</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEEmailEmpresa" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Telefono</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputETelefonoEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Contacto</span>
+                            <input class="form-control" style="min-width:100%" type="text" name="name" value="" id="InputEContactoEmpresa" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Dirección</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEDireccionEmpresa" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Ciudad</span>
+                            <select class="form-control" id="SelectECiudad">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Estado</span>
+                            <select class="form-control" id="SelectEstadoEmpresa">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosEmpresa()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="ModalEliminarEmpresa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Empresa</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdDEmpresa" hidden></label>
+                <label id="MensajeEliminarEmpresa"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarEmpresa()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GridEmpresa();
+        ListaCiudad();
+        ListaECiudad();
+        ListaTipoDocumento();
+        ListaETipoDocumento();
+    });
+</script>
 
 

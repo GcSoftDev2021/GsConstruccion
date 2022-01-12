@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h4>Usuario</h4>
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearUsuario">Nuevo Usuario</button>
+<div style="margin-top:20px; background-color:white;border-radius:15px">
+    <div style="padding-top:20px">
+        <h5 style="text-align:center">LISTA DE USUARIOS</h5>
+    </div>
+    <div style="padding-left:25px;padding-right:25px;padding-bottom:25px">
+        <table id="gridUsuario" class="table" style="width:100%"></table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCrearUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Nuevo Usuario</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Usuario</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputUser" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Contraseña</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputPasswordUser" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Email</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEmailUser" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Nombre Usuario</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputNombreUsuario" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Rol</span>
+                            <select id="SelectRol" class="form-control">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Fecha Vigencia</span>
+                            <input class="form-control" type="date" name="name" value="" id="InputFechaVigenciaUser" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="CrearUsuario()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalEditarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar Usuario</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdUsuario" hidden></label>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <span>Usuario</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEUser" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Contraseña *</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEPasswordUser" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Nombre Usuario</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputENombreUsuario" autocomplete="off" />
+                        </td>
+                        <td>
+                            <span>Email</span>
+                            <input class="form-control" type="text" name="name" value="" id="InputEEmailUser" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Rol Usuario</span>
+                            <select id="SelectERol" class="form-control">
+                                <option value="-1">Seleccione ...</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span>Estado</span>
+                            <select class="form-control" id="SelectEstadoUsuario">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Fecha Vigencia</span>
+                            <input class="form-control" type="date" name="name" value="" id="InputEFechaVigenciaUser" autocomplete="off" />
+                        </td>
+                    </tr>
+                </table>
+                <span style="color:red; font-size:12px; text-align:justify">* Si desea mantener la contraseña actual no ingrese ningun valor en el campo Contraseña, de lo contrario si desea modificarla ingrese el valor para la nueva Contraseña</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="GuardarCambiosUsuario()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="ModalEliminarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Eliminar Usuario</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label id="IdDUsuario" hidden></label>
+                <label id="MensajeEliminarUsuario"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" onclick="EliminarUsuario()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        GridUsuario();
+        ListaRol();
+        ListaERol();
+    });
+</script>
+

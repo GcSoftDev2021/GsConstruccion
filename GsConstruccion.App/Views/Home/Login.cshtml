@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
@@ -6,10 +7,7 @@
 <div>
     <table class="table table-borderless" style="align-content:center">
         <tr>
-            <td><label style="margin-left:auto;margin-right:auto;margin-top:50px; font-size:60px"><strong>GSC</strong></label></td>
-        </tr>
-        <tr>
-            <td><label style="margin-left:auto;margin-right:auto"><strong>GestionSystem Soft Construcción</strong></label></td>
+            <td><h2 style="margin-left:auto;margin-right:auto;margin-top:50px"><strong>GestionSystem Soft</strong></h2></td>
         </tr>
         <tr>
             <td><img src="~/Sources/ImagesApp/Login.png" alt="" style="height:180px" /></td>
@@ -23,9 +21,8 @@
         <tr>
             <td><button class="btn btn-primary" onclick="Ingresar()">Ingresar</button></td>
         </tr>
-        <tr>
-            <td><a href="/Login/RecuperarPassword">Recuperar Contraseña</a></td>
-        </tr>
+        @*<tr>
+                <td><a href="/Login/RecuperarPassword">Recuperar Contraseña</a></td>
+            </tr>*@
     </table>
 </div>
-          
