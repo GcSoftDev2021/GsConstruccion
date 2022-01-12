@@ -1,45 +1,4 @@
 ﻿
-CREATE TABLE Cargo 
-(Id int identity(1,1) Primary key ,
-Nombre varchar(255),
-Activo int default 1
-unique(Nombre)
-)
-
-go
-
-
-insert into Cargo (nombre) values ('Ingeniero')
-insert into Cargo (nombre) values ('Contratista')
-insert into Cargo (nombre) values ('Oficial')
-insert into Cargo (nombre) values ('Maestro')
-insert into Cargo (nombre) values ('Auxiliar')
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaCargo]
-AS
-BEGIN
-	SELECT Id, Nombre FROM Cargo WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombreCargo (@idCargo INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreCargo VARCHAR(255)
-	SELECT	@NombreCargo = Nombre
-	FROM	Cargo
-	WHERE	Id = @idCargo
-	RETURN @NombreCargo
-END
-
-
----------------------------------------------------------------------------------------
-
-go
-
 CREATE TABLE Rol 
 (Id int identity(1,1) Primary key ,
 Nombre varchar(255),
@@ -47,1373 +6,8 @@ Activo int default 1,
 unique(Nombre)
 )
 
-go
 
 insert into Rol (Nombre) values ('Administrador')
-
----------------------------------------------------------------------------------------
-
-go
-
-
-CREATE TABLE TipoDocumentoIdentificacion 
-(Id int identity(1,1) Primary key ,
-Nombre varchar(255),
-Descripcion varchar(255),
-Activo int default 1
-unique(Nombre)
-)
-
-go
-
-insert into TipoDocumentoIdentificacion (nombre, Descripcion) values ('CC', 'Cedula Ciudadanía')
-insert into TipoDocumentoIdentificacion (nombre, Descripcion) values ('CE', 'Cedula Extranjería')
-insert into TipoDocumentoIdentificacion (nombre, Descripcion) values ('NIT', 'Número de Identificación Tributaria')
-insert into TipoDocumentoIdentificacion (nombre, Descripcion) values ('RUT','Registro Unico Tributario')
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaTipoDocumentoIdentificacion]
-AS
-BEGIN
-	SELECT Id, Nombre FROM TipoDocumentoIdentificacion WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombreTipoDocumentoIdentificacion (@idTipoDocumentoIdentificacion INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreTipoDocumentoIdentificacion VARCHAR(255)
-	SELECT	@NombreTipoDocumentoIdentificacion = Nombre
-	FROM	TipoDocumentoIdentificacion
-	WHERE	Id = @idTipoDocumentoIdentificacion
-	RETURN @NombreTipoDocumentoIdentificacion
-END
-
----------------------------------------------------------------------------------------
-
-go
-
-
-CREATE TABLE TipoEstadoCivil 
-(Id int identity(1,1) Primary key ,
-Nombre varchar(255),
-Activo int default 1
-unique(Nombre)
-)
-
-go
-
-insert into TipoEstadoCivil (nombre) values ('Soltero(a)')
-insert into TipoEstadoCivil (nombre) values ('Casado(a)')
-insert into TipoEstadoCivil (nombre) values ('Unión Libre')
-insert into TipoEstadoCivil (nombre) values ('Viudo(a)')
-insert into TipoEstadoCivil (nombre) values ('Separado(a)')
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaTipoEstadoCivil]
-AS
-BEGIN
-	SELECT Id, Nombre FROM TipoEstadoCivil WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombreTipoEstadoCivil (@idTipoEstadoCivil INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreTipoEstadoCivil VARCHAR(255)
-	SELECT	@NombreTipoEstadoCivil = Nombre
-	FROM	TipoEstadoCivil
-	WHERE	Id = @idTipoEstadoCivil
-	RETURN @NombreTipoEstadoCivil
-END
-
----------------------------------------------------------------------------------------
-
-go
-
-
-CREATE TABLE TipoFormaPago 
-(Id int identity(1,1) Primary key ,
-Nombre varchar(255),
-Activo int default 1
-unique(Nombre)
-)
-
-go
-
-
-insert into TipoFormaPago (nombre) values ('Efectivo')
-insert into TipoFormaPago (nombre) values ('Daviplata')
-insert into TipoFormaPago (nombre) values ('Nequi')
-insert into TipoFormaPago (nombre) values ('Bancolombia')
-insert into TipoFormaPago (nombre) values ('Ahorro a la Mano')
-insert into TipoFormaPago (nombre) values ('Davivienda')
-insert into TipoFormaPago (nombre) values ('Banco de Bogota')
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaTipoFormaPago]
-AS
-BEGIN
-	SELECT Id, Nombre FROM TipoFormaPago WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombreTipoFormaPago (@idTipoFormaPago INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreTipoFormaPago VARCHAR(255)
-	SELECT	@NombreTipoFormaPago = Nombre
-	FROM	TipoFormaPago
-	WHERE	Id = @idTipoFormaPago
-	RETURN @NombreTipoFormaPago
-END
-
----------------------------------------------------------------------------------------
-
-go
-
-
-CREATE TABLE TipoHoraExtra 
-(Id int identity(1,1) Primary key ,
-Nombre varchar(255),
-Activo int default 1
-unique(Nombre)
-)
-
-go
-
-insert into TipoHoraExtra (nombre) values ('Hora Extra Diurna')
-insert into TipoHoraExtra (nombre) values ('Hora Extra Nocturna')
-insert into TipoHoraExtra (nombre) values ('Hora Extra Dominical y/o Festiva')
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaTipoHoraExtra]
-AS
-BEGIN
-	SELECT Id, Nombre FROM TipoHoraExtra WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombreTipoHoraExtra (@idTipoHoraExtra INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreTipoHoraExtra VARCHAR(255)
-	SELECT	@NombreTipoHoraExtra = Nombre
-	FROM	TipoHoraExtra
-	WHERE	Id = @idTipoHoraExtra 
-	RETURN @NombreTipoHoraExtra
-END
-
----------------------------------------------------------------------------------------
-
-go
-
-CREATE TABLE Pais 
-(Id int identity(1,1) Primary key ,
-Nombre varchar(255),
-Activo int default 1
-unique(Nombre)
-)
-
-go
-
-insert into Pais (nombre) values ('Colombia')
-insert into Pais (nombre) values ('Venezuela')
-insert into Pais (nombre) values ('Perú')
-insert into Pais (nombre) values ('Ecuador')
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaPais]
-AS
-BEGIN
-	SELECT Id, Nombre FROM Pais WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombrePais (@idPais INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombrePais VARCHAR(255)
-	SELECT	@NombrePais = Nombre
-	FROM	Pais
-	WHERE	Id = @idPais 
-	RETURN @NombrePais
-END
-
----------------------------------------------------------------------------------------
-
-go
-
-CREATE TABLE Ciudad 
-(Id int identity(1,1) Primary key ,
-IdPais int,
-Nombre varchar(255),
-Activo int default 1,
-unique(Nombre)
-)
-
-go
-
-ALTER TABLE Ciudad ADD CONSTRAINT FK_IdPais FOREIGN KEY (IdPais) references Pais(Id)
-
-go
-
-CREATE PROCEDURE [dbo].[SP_ListaCiudad]
-AS
-BEGIN
-	SELECT Id, Nombre FROM Ciudad WHERE Activo = 1
-END
-
-go
-
-CREATE FUNCTION Fun_BuscarNombreCiudad (@idCiudad INT)
-RETURNS VARCHAR(255)
-AS BEGIN
-DECLARE @NombreCiudad VARCHAR(255)
-	SELECT	@NombreCiudad = Nombre
-	FROM	Ciudad
-	WHERE	Id = @idCiudad 
-	RETURN @NombreCiudad
-END
-
-go
-
-insert into Ciudad (IdPais, Nombre) values (1,'Abejorral, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Ábrego, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Abriaqui, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Acacías, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Acandí, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Acevedo, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Achí, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Agrado, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Agua De Dios, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Aguachica, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Aguada, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Aguadas, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Aguazul, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Agustín Codazzi, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Aipe, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Albán, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Albán, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Albania, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Albania, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Albania, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Alcalá, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Aldana, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Alejandria, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Algarrobo, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Algeciras, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Almaguer, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Almeida, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Alpujarra, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Altamira, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Alto Baudó, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Altos Del Rosario, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Alvarado, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Amaga, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Amalfi, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Ambalema, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Anapoima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ancuyá, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Andalucía, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Andes, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Angelopolis, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Angostura, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Anolaima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Anori, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Anserma, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Ansermanuevo, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Anza, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Anzoátegui, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Apartado, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Apía, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Apulo, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Aquitania, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Aracataca, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Aranzazu, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Aratoca, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Arauca, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Arauquita, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Arbeláez, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Arboleda, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Arboledas, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Arboletes, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Arcabuco, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Arenal, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Argelia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Argelia, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Argelia, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ariguaní, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Arjona, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Armenia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Armenia, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Armero, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Arroyohondo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Astrea, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Ataco, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Atrato, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Ayapel, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Bagadó, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Bahía Solano, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Bajo Baudó, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Balboa, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Balboa, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Baranoa, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Baraya, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Barbacoas, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Barbosa, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Barbosa, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Barichara, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Barranca De Upía, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Barrancabermeja, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Barrancas, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Barranco De Loba, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Barranco Minas, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Barranquilla, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Becerril, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Belalcázar, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Belén De Los Andaquíes, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Belén De Umbría, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Belén, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Belén, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Bello, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Belmira, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Beltrán, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Berbeo, Boyacá')
-insert into Ciudad (IdPais, Nombre) values (1,'Betania, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Betéitiva, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Betulia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Betulia, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Bituima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Boavita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Bochalema, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Bogotá D.C., Bogota D.C.')
-insert into Ciudad (IdPais, Nombre) values (1,'Bojacá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Bojayá, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Bolívar, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Bolívar, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Bolívar, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Bosconia, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Boyacá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Briceño, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Briceño, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Bucaramanga, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Bucarasica, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Buenaventura, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Buenavista, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Buenavista, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Buenavista, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Buenavista, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Buenos Aires, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Buesaco, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Buga, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Bugalagrande, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Buritica, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Busbanzá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cabrera, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cabrera, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cabuyaro, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Cacahual, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Caceres, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Cachipay, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cáchira, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cácota, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Caicedo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Caicedonia, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Caimito, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Cajamarca, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Cajibío, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cajicá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Calamar, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Calamar, Guaviare')
-insert into Ciudad (IdPais, Nombre) values (1,'Calarcá, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Caldas, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Caldas, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Caldono, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cali, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'California, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Calima, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Caloto, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Campamento, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Campo De La Cruz, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Campoalegre, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Campohermoso, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Canalete, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Candelaria, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Candelaria, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cantagallo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Cantón Del San Pablo, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Cañasgordas, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Caparrapí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Capitanejo, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cáqueza, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Caracoli, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Caramanta, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Carcasí, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Carepa, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Carmen Apicalá, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Carmen De Carupa, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Carmen Del Darien, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Carolina, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Cartagena Del Chairá, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Cartagena, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Cartago, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Caruru, Vaupés')
-insert into Ciudad (IdPais, Nombre) values (1,'Casabianca, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Castilla La Nueva, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Caucasia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Cepitá, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cereté, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Cerinza, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cerrito, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cerro San Antonio, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Certegui, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Chachaguí, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Chaguaní, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chalán, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Chámeza, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Chaparral, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Charalá, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Charta, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Chía, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chigorodo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Chima, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Chima, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Chimichagua, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Chinácota, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Chinavita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chinchiná, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Chinú, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Chipaque, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chipatá, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Chiquinquirá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chiquiza, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chiriguaná, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Chiscas, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chitagá, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Chitaraque, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chivatá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chivoló, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Chivor, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Choachí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Chocontá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cicuco, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Ciénaga De Oro, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Ciénaga, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Cienega, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cimitarra, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Circasia, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Cisneros, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Ciudad Bolivar, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Clemencia, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Cocorna, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Coello, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Cogua, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Colombia, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Colón, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Colón, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Colosó, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Combita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Concepcion, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Concepción, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Concordia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Concordia, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Condoto, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Confines, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Consacá, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Contadero, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Contratación, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Convención, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Copacabana, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Coper, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Córdoba, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Córdoba, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Córdoba, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Corinto, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Coromoro, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Corozal, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Corrales, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cota, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cotorra, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Covarachía, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Coveñas, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Coyaima, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Cravo Norte, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cuaspud, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Cubará, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cubarral, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Cucaita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cucunubá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cúcuta, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cucutilla, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Cuitiiva, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Cumaral, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Cumaribo, Vichada')
-insert into Ciudad (IdPais, Nombre) values (1,'Cumbal, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Cumbitara, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Cunday, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Curití, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Currillo, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Curumaní, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Dabeiba, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Dagua, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Dibulla, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Distraccion, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Dolores, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Don Matias, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Dos Quebradas, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Duitama, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Durania, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Ebejico, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'El Águila, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Bagre, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'El Banco, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'El Cairo, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Calvario, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'El Carmen De Atrato, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'El Carmen De Bolívar, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'El Carmen De Chucurí, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Carmen De Viboral, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'El Carmen, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Castillo, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'El Cerrito, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Charco, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'El Cocuy, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Colegio, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Copey, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'El Doncello, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'El Dorado, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'El Dovio, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Encanto, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'El Espino, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Florián, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Guacamayo, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Guamo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'El Molino, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'El Paso, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'El Paujil, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'El Peñol, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'El Peñón, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'El Peñón, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Peñón, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Piñón, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'El Playón, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Retén, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'El Retorno, Guaviare')
-insert into Ciudad (IdPais, Nombre) values (1,'El Roble, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'El Rosal, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Rosario, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'El Santuario, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'El Tablón, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'El Tambo, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'El Tambo, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'El Tarra, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'El Zulia, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Elías, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Encino, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Enciso, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Entrerrios, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Envigado, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Espinal, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Facatativá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Falán, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Filadelfia, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Filandia, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Firavitoba, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Flandes, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Florencia, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Florencia, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Floresta, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Florida, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Floridablanca, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Fómeque, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Fonseca, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Fortul, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Fosca, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Francisco Pizarro, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Fredonia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Fresno, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Frontino, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Fuente De Oro, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Fundación, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Funes, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Funza, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Fúquene, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Fusagasugá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Gachalá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Gachancipá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Gachantivá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Gachetá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Galán, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Galapa, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Galeras, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Gama, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Gamarra, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Gámbita, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Gameza, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Garagoa, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Garzón, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Génova, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Gigante, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Ginebra, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Giraldo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Girardot, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Girardota, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Girón, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Gomez Plata, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'González, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Gramalote, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Granada, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Granada, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Granada, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Guaca, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Guacamayas, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guacarí, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guachene, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guachetá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guachucal, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Guadalupe, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Guadalupe, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Guadalupe, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Guaduas, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guaitarilla, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Gualmatán, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Guamal, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Guamal, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Guamo, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Guapi, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guapotá, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Guaranda, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Guarne, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Guasca, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guatape, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Guataquí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guatavita, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guateque, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guática, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Guavatá, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Guayabal De Síquima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guayabetal, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guayatá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Guepsa, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Güicán, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Gutiérrez, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Hacarí, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Hatillo De Loba, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Hato Corozal, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Hato, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Hatonuevo, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Heliconia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Herrán, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Herveo, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Hispania, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Hobo, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Honda, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Ibagué, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Icononzo, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Iles, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Imués, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Inírida, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Inzá, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ipiales, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Iquira, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Isnos, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Istmina, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Itagüi, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Ituango, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Iza, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Jambaló, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Jamundí, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Jardin, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Jenesano, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Jerico, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Jericó, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Jerusalén, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Jesús María, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Jordán, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Juan De Acosta, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Junín, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Juradó, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'La Apartada, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'La Argentina, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'La Belleza, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'La Calera, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Capilla, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Ceja, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'La Celia, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'La Chorrera, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'La Cruz, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'La Cumbre, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Dorada, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'La Esperanza, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'La Estrella, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'La Florida, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'La Gloria, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'La Guadalupe, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'La Jagua De Ibirico, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'La Jagua Del Pilar, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'La Llanada, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'La Macarena, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'La Merced, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'La Mesa, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Montañita, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'La Palma, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Paz, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'La Paz, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'La Pedrera, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'La Peña, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Pintada, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'La Plata, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'La Playa, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'La Primavera, Vichada')
-insert into Ciudad (IdPais, Nombre) values (1,'La Salina, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'La Sierra, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Tebaida, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'La Tola, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'La Union, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'La Unión, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'La Unión, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'La Unión, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Uvita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Vega, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Vega, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Victoria, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'La Victoria, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Victoria, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'La Virginia, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Labateca, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Labranzagrande, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Landázuri, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Lebrija, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Leiva, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Lejanías, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Lenguazaque, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Lérida, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Leticia, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Líbano, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Liborina, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Linares, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Litoral Del Bajo San Juan, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Lloró, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'López, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Lorica, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Los Andes, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Los Córdobas, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Los Palmitos, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Los Patios, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Los Santos, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Lourdes, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Luruaco, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Macanal, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Macaravita, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Maceo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Machetá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Madrid, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Magangué, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Maguí, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Mahates, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Maicao, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Majagual, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Málaga, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Malambo, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Mallama, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Manatí, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Manaure, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Manaure, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Maní, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Manizales, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Manta, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Manzanares, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Mapiripán, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Mapiripana, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Margarita, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'María La Baja, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Marinilla, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Maripí, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Mariquita, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Marmato, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Marquetalia, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Marsella, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Marulanda, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Matanza, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Medellin, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Medina, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Medio Atrato, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Medio Baudo, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Medio San Juan, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Melgar, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Mercaderes, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Mesetas, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Milán, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Miraflores, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Miraflores, Guaviare')
-insert into Ciudad (IdPais, Nombre) values (1,'Miranda, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Mirití-Paraná, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Mistrató, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Mitú, Vaupés')
-insert into Ciudad (IdPais, Nombre) values (1,'Mocoa, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Mogotes, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Molagavita, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Momil, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Mompós, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Mongua, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Monguí, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Moniquirá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Montebello, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Montecristo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Montelíbano, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Montenegro, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Montería, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Monterrey, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Moñitos, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Morales, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Morales, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Morelia, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Morichal Nuevo, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Morroa, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Mosquera, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Mosquera, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Motavita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Murillo, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Murindo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Mutata, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Mutiscua, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Muzo, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nariño, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Nariño, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nariño, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Nátaga, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Natagaima, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Nechi, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Necocli, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Neira, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Neiva, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Nemocón, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nilo, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nimaima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nobsa, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nocaima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Norcasia, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Norosi, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Nóvita, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Nueva Granada, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Nuevo Colón, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Nunchía, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Nuquí, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Obando, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ocamonte, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Ocaña, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Oiba, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Oicata, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Olaya Herrera, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Olaya, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Onzaga, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Oporapa, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Orito, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Orocué, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Ortega, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Ospina, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Otanche, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ovejas, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Pachavita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pacho, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pacoa, Vaupés')
-insert into Ciudad (IdPais, Nombre) values (1,'Pácora, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Padilla, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Paez, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Páez, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Paicol, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Pailitas, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Paime, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Paipa, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pajarito, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Palermo, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Palestina, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Palestina, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Palmar De Varela, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Palmar, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Palmas Del Socorro, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Palmira, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Palmito, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Palo Cabildo, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Pamplona, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Pamplonita, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Pana Pana, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Pandi, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Panqueba, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Papunahua, Vaupés')
-insert into Ciudad (IdPais, Nombre) values (1,'Páramo, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Paratebueno, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pasca, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pasto, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Patía, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pauna, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Paya, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Paz De Ariporo, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Paz De Río, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pedraza, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Pelaya, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Pensilvania, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Peñol, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Peque, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Pereira, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Pesca, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Piamonte, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Piedecuesta, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Piedras, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Piendamó, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pijao, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Pijino Del Carmen, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Pinchote, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Pinillos, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Piojó, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Pisba, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pital, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Pitalito, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Pivijay, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Planadas, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Planeta Rica, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Plato, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Policarpa, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Polonuevo, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Ponedera, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Popayán, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pore, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Potosí, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Pradera, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Prado, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Providencia, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Providencia, San Andrés')
-insert into Ciudad (IdPais, Nombre) values (1,'Pueblo Bello, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Pueblo Nuevo, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Pueblo Rico, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Pueblorrico, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Puebloviejo, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Puente Nacional, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerres, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Alegría, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Arica, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Asís, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Berrio, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Boyacá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Caicedo, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Carreño, Vichada')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Colombia, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Colombia, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Concordia, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Escondido, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Gaitán, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Guzmán, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Leguízamo, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Libertador, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Lleras, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto López, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Nare, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Nariño, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Parra, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Rico, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Rico, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Rondón, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Salgar, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Santander, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Santander, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Tejada, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Triunfo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Puerto Wilches, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Pulí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Pupiales, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Puracé, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Purificación, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Purísima, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Quebradanegra, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Quetame, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Quibdo, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Quimbaya, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Quinchía, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Quipama, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Quípile, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ragonvalia, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Ramiriquí, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Raquira, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Recetor, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Regidor, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Remedios, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Remolino, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Repelón, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Restrepo, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Restrepo, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Retiro, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Ricaurte, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ricaurte, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Río De Oro, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Río Iro, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Rio Quito, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Río Viejo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Rioblanco, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Riofrío, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Riohacha, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Rionegro, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Rionegro, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Riosucio, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Riosucio, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Risaralda, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Rivera, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Roberto Payán, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Roldanillo, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Roncesvalles, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Rondón, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Rosas, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Rovira, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabana De Torres, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabanagrande, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabanalarga, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabanalarga, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabanalarga, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabanas De San Ángel, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Sabaneta, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Saboyá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sácama, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Sachica, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sahagún, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Saladoblanco, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Salamina, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Salamina, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Salazar, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Saldaña, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Salento, Quindio')
-insert into Ciudad (IdPais, Nombre) values (1,'Salgar, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Samacá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Samaná, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Samaniego, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Sampués, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'San Agustín, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'San Alberto, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Andrés De Sotavet0, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'San Andres, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Andrés, San Andrés')
-insert into Ciudad (IdPais, Nombre) values (1,'San Andrés, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Antero, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'San Antonio De Tequendama, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Antonio, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'San Benito Abad, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'San Benito, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Bernardo Del Viento, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'San Bernardo, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Bernardo, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'San Calixto, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Carlos De Guaroa, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'San Carlos, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Carlos, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'San Cayetano, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Cayetano, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Cristobal, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Diego, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Eduardo, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Estanislao, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Felipe, Guanía')
-insert into Ciudad (IdPais, Nombre) values (1,'San Fernando, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Francisco, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Francisco, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Francisco, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'San Gil, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Jacinto Del Cauca, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Jacinto, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Jeronimo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Joaquín, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San José De La Fragua, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'San Jose De La Montaña, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San José De Miranda, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San José De Pare, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Jose De Ure, Cordoba')
-insert into Ciudad (IdPais, Nombre) values (1,'San José Del Guaviare, Guaviare')
-insert into Ciudad (IdPais, Nombre) values (1,'San José Del Palmar, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'San José, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juan Betulia, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juan De Arama, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juan De Rioseco, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juan De Uraba, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juan Del Cesar, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juan Nepomuceno, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Juanito, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'San Lorenzo, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'San Luis De Gaceno, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Luis De Palenque, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'San Luis, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Luis, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'San Marcos, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'San Martín De Loba, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Martín, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Martín, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'San Mateo, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Miguel De Sema, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Miguel, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'San Miguel, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Onofre, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pablo Borbur, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pablo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pablo, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pedro De Cartago, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pedro De Uraba, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pedro, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pedro, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pedro, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Pelayo, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'San Rafael, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Roque, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Sebastián De Buenavista, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'San Sebastián, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'San Vicente De Chucurí, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'San Vicente Del Caguán, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'San Vicente, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'San Zenón, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Sandoná, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Ana, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Barbara De Pinto, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Barbara, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Bárbara, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Bárbara, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Catalina, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Cruz, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Helena Del Opón, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Isabel, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Lucía, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa María, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa María, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Marta, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosa De Cabal, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosa De Osos, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosa De Viterbo, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosa Del Sur, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosa, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosa, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Rosalía, Vichada')
-insert into Ciudad (IdPais, Nombre) values (1,'Santa Sofía, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Santafe De Antioquia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Santana, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Santander De Quilichao, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Santiago, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Santiago, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Santo Domingo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Santo Tomas, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Santuario, Risaralda')
-insert into Ciudad (IdPais, Nombre) values (1,'Sapuyes, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Saravena, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sardinata, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Sasaima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sativanorte, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sativasur, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Segovia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Sesquilé, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sevilla, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Siachoque, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sibaté, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sibundoy, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Silos, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Silvania, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Silvia, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Simacota, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Simijaca, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Simití, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Sincé, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Sincelejo, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Sipí, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Sitionuevo, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Soacha, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Soatá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Socha, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Socorro, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Socotá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sogamoso, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Solano, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Soledad, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Solita, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Somondoco, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sonson, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Sopetran, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Soplaviento, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Sopó, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sora, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Soracá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sotaquirá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sotará, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Suaita, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Suan, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Suárez, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Suárez, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Suaza, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Subachoque, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sucre, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sucre, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Sucre, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Suesca, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Supatá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Supía, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Suratá, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Susa, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Susacón, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sutamarchán, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sutatausa, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Sutatenza, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tabio, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tadó, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Talaigua Nuevo, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Tamalameque, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Támara, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Tame, Arauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tamesis, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Taminango, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Tangua, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Taraira, Vaupés')
-insert into Ciudad (IdPais, Nombre) values (1,'Tarapacá, Amazonas')
-insert into Ciudad (IdPais, Nombre) values (1,'Taraza, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Tarqui, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Tarso, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Tasco, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tauramena, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Tausa, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tello, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Tena, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tenerife, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Tenjo, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tenza, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Teorama, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Teruel, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Tesalia, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Tibacuy, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tibaná, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tibasosa, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tibirita, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tibú, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Tierralta, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Timaná, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Timbío, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Timbiquí, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tinjacá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tipacoque, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tiquisio, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Titiribi, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Toca, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tocaima, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tocancipá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Togüí, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Toledo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Toledo, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Tolú, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Toluviejo, Sucre')
-insert into Ciudad (IdPais, Nombre) values (1,'Tona, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Topaga, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Topaipí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Toribío, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Toro, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tota, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Totoró, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Trinidad, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Trujillo, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tubará, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Tuchin, Cordoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Tuluá, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tumaco, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Tunja, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tununguá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Túquerres, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Turbaco, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Turbaná, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Turbo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Turmequé, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tuta, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Tutasá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ubalá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ubaque, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ubaté, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ulloa, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Umbita, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Une, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Unguía, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Unión Panamericana, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Uramita, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Uribe, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Uribia, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Urrao, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Urumita, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Usiacurí, Atlantico')
-insert into Ciudad (IdPais, Nombre) values (1,'Útica, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Valdivia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Valencia, Córdoba')
-insert into Ciudad (IdPais, Nombre) values (1,'Valle De San José, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Valle De San Juan, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Valle Del Guamuez, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Valledupar, Cesar')
-insert into Ciudad (IdPais, Nombre) values (1,'Valparaiso, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Valparaíso, Caquetá')
-insert into Ciudad (IdPais, Nombre) values (1,'Vegachi, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Vélez, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Venadillo, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Venecia, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Venecia, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Ventaquemada, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Vergara, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Versalles, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Vetas, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Vianí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Victoria, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Vigia Del Fuerte, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Vijes, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Villa Caro, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Villa De Leyva, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Villa Del Rosario, Norte De Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Villa Rica, Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Villagarzón, Putumayo')
-insert into Ciudad (IdPais, Nombre) values (1,'Villagómez, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Villahermosa, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Villamaría, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Villanueva, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Villanueva, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Villanueva, La Guajira')
-insert into Ciudad (IdPais, Nombre) values (1,'Villanueva, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Villapinzón, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Villarrica, Tolima')
-insert into Ciudad (IdPais, Nombre) values (1,'Villavicencio, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Villavieja, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Villeta, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Viotá, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Viracachá, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Vista Hermosa, Meta')
-insert into Ciudad (IdPais, Nombre) values (1,'Viterbo, Caldas')
-insert into Ciudad (IdPais, Nombre) values (1,'Yacopí, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Yacuanquer, Nariño')
-insert into Ciudad (IdPais, Nombre) values (1,'Yaguará, Huila')
-insert into Ciudad (IdPais, Nombre) values (1,'Yali, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Yarumal, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Yavaraté, Vaupés')
-insert into Ciudad (IdPais, Nombre) values (1,'Yolombo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Yondo, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Yopal, Casanare')
-insert into Ciudad (IdPais, Nombre) values (1,'Yotoco, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Yumbo, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Zambrano, Bolivar')
-insert into Ciudad (IdPais, Nombre) values (1,'Zapatoca, Santander')
-insert into Ciudad (IdPais, Nombre) values (1,'Zapayán, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Zaragoza, Antioquia')
-insert into Ciudad (IdPais, Nombre) values (1,'Zarzal, Valle Del Cauca')
-insert into Ciudad (IdPais, Nombre) values (1,'Zetaquira, Boyaca')
-insert into Ciudad (IdPais, Nombre) values (1,'Zipacón, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Zipaquira, Cundinamarca')
-insert into Ciudad (IdPais, Nombre) values (1,'Zona Bananera, Magdalena')
-insert into Ciudad (IdPais, Nombre) values (1,'Belen De Bajira, Chocó')
-insert into Ciudad (IdPais, Nombre) values (1,'Cerromatoso, Cordoba')
-
----------------------------------------------------------------------------------------
 
 go
 
@@ -1433,20 +27,153 @@ unique(Iduser),
 unique(Usuario)
 )
 
-go 
-
 ALTER TABLE Usuario ADD CONSTRAINT FK_IdRol FOREIGN KEY (IdRol) references Rol(Id)
 
---SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin' ), 2) 
---SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  '1' ), 2) 
---DBCC CHECKIDENT ('Usuario', RESEED, 0)
---delete from Usuario
+SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin' ), 2) 
+SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Invitado' ), 2) 
+SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Admin2021*' ), 2) 
+SELECT CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  'Invitado2021' ), 2) 
+DBCC CHECKIDENT ('Usuario', RESEED, 0)
+delete from Usuario
 
 go
 
-insert into Usuario (IdUser,Usuario,Password,Email,Nombre,IdRol,FechaCreacion, FechaVigencia, ImagenPerfil)values('E3AFED0047B08059D0FADA10F400C1E5','Admin','C4CA4238A0B923820DCC509A6F75849B','gestionsystem@admin.com','Administrador GestionSystem',1, GETDATE(), '2022-12-30','\Sources\ImagesPerfilUsers\Usuario.png')
+insert into Usuario (IdUser,Usuario,Password,Email,Nombre,IdRol,FechaCreacion, FechaVigencia, ImagenPerfil)values('E3AFED0047B08059D0FADA10F400C1E5','Admin','E3778380B0360F5E35411C728FCFBD0B','gestionsystem@admin.com','Administrador GestionSystem',1, GETDATE(), '2022-12-30','\Sources\ImagesPerfilUsers\Usuario.png')
 
----------------------------------------------------------------------------------------
+go
+
+CREATE PROCEDURE [dbo].[SP_BuscarRolUsuario] @IdUser varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+	DECLARE		@Rol varchar(255)
+		SELECT	@Rol = R.Nombre 
+		FROM	Rol R,
+				Usuario U
+		WHERE	R.Id = U.IdRol
+				and U.IdUser = @IdUser
+	
+	SET @Resultado = @Rol
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridRol]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Activo,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado
+			FROM Rol
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearRol] @IdUser varchar(255), @Modulo varchar(255), @NombreRol varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)	
+	IF @Crear > 0
+			BEGIN
+				INSERT INTO Rol (Nombre) VALUES (@NombreRol) 
+				SET @Resultado = 'OK__Se a creado el Rol (' + @NombreRol+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear el Rol' 
+			END
+	SELECT @Resultado
+END
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarRol] @IdUser varchar(255), @Modulo varchar(255), @IdRol int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreRol varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreRol = Nombre FROM Rol WHERE Id = @IdRol
+SELECT	@Eliminar =  dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = COUNT(1) FROM Usuario WHERE IdRol = @IdRol
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__El Rol (' + @NombreRol +') no se puede Eliminar, actualmente se encuentra siendo usado por otros Usuarios'	
+					END
+				ELSE
+					BEGIN
+						DELETE Rol WHERE Id = @IdRol
+						SET @Resultado = 'OK__Se Elimino el Rol correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar el Rol' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE	[dbo].[SP_GuardarCambiosRol] @IdUser varchar(255), @Modulo varchar(255), @IdRol int, @NombreRol varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT	@Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)
+	IF @Modificar > 0
+					BEGIN
+						UPDATE Rol SET  Nombre = @NombreRol, Activo = @Activo WHERE Id = @IdRol
+						SET @Resultado = 'OK__Se guardaron los cambios del Rol (' + @NombreRol+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios al Rol' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaRol]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Rol WHERE Activo = 1
+END
+
+go
+
+CREATE TABLE Log_InicioSesion
+(Id int identity(1,1) Primary key ,
+IdUser int,
+FechaIngreso datetime
+)
+
+ALTER TABLE Log_InicioSesion ADD CONSTRAINT FK_IdUsuarioLog_InicioSesion FOREIGN KEY (IdUser) references Usuario(Id)
+
+go
+
+CREATE PROCEDURE SP_GridHistorialIngresoUsuario @IdUser varchar(255)
+AS
+BEGIN
+DECLARE @IdUsuario INT
+SELECT @IdUsuario = Id FROM Usuario Where IdUser = @IdUser
+	SELECT	CONVERT(varchar,L.FechaIngreso,20) As FechaIngreso,
+			U.Nombre As Usuario
+	FROM	Log_InicioSesion L,
+			Usuario U
+	WHERE	L.IdUser = @IdUsuario
+			and U.Id = L.IdUser
+END
 
 go
 
@@ -1480,7 +207,7 @@ DECLARE @ExisteUser INT, @ValidaPassword varchar(255), @IdUser varchar(255),
 						BEGIN
 							IF @Activo = 1
 								BEGIN
-									--INSERT INTO Log_InicioSesion (IdUser,FechaIngreso)VALUES(@IdUsuario, GETDATE())
+									INSERT INTO Log_InicioSesion (IdUser,FechaIngreso)VALUES(@IdUsuario, GETDATE())
 									SET @Resultado = 'OK__'+@IdUser
 								END
 							ELSE
@@ -1501,25 +228,909 @@ DECLARE @ExisteUser INT, @ValidaPassword varchar(255), @IdUser varchar(255),
 	SELECT @Resultado
 END
 
----------------------------------------------------------------------------------------
+go
+
+CREATE TABLE Modulo 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+RutaPagina varchar(255),
+Activo int default 1,
+IdUsuarioCrea int,
+FechaCreacion datetime,
+unique(Nombre),
+unique(Rutapagina)
+)
+
+
+ALTER TABLE Modulo ADD CONSTRAINT FK_IdUsuarioCreaModulo FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+
+Insert into Modulo (Nombre, RutaPagina) values ('Usuario','/UsersManagement/Users')
+Insert into Modulo (Nombre, RutaPagina) values ('Permiso Usuario','/UsersManagement/PermisoUsers')
+Insert into Modulo (Nombre, RutaPagina) values ('Rol Usuario','/UsersManagement/RolUsers')
+Insert into Modulo (Nombre, RutaPagina) values ('Información Usuario','/Usuario/InformacionUsuario')
+Insert into Modulo (Nombre, RutaPagina) values ('Modulo','/Modulo/Modulo')
 
 go
 
-CREATE PROCEDURE [dbo].[SP_BuscarRolUsuario] @IdUser varchar(255), @Resultado varchar(255) OUTPUT
+CREATE PROCEDURE [dbo].[SP_GridModulo]
 AS
 BEGIN
-	DECLARE		@Rol varchar(255)
-		SELECT	@Rol = R.Nombre 
-		FROM	Rol R,
-				Usuario U
-		WHERE	R.Id = U.IdRol
-				and U.IdUser = @IdUser
-	
-	SET @Resultado = @Rol
+	SELECT	Id, 
+			Nombre,
+			RutaPagina,
+			Activo,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,FechaCreacion,20) AS FechaCreacion
+			FROM Modulo
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaModulo]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Modulo WHERE Activo = 1
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearModulo] @IdUser varchar(255), @Modulo varchar(255), @NombreModulo varchar(255), @UrlPagina varchar(255),@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)
+	IF @Crear > 0
+			BEGIN
+				INSERT INTO Modulo(Nombre,RutaPagina,IdUsuarioCrea, FechaCreacion) VALUES (@NombreModulo,@UrlPagina,@IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK__Se a creado el Modulo (' + @NombreModulo + ') y la Url (' + @UrlPagina + ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear Permisos'
+			END
 	SELECT @Resultado
 END
 
----------------------------------------------------------------------------------------
+go
+
+CREATE PROCEDURE	[dbo].[SP_GuardarCambiosModulo] @IdUser varchar(255), @Modulo varchar(255), @IdModulo int, @NombreModulo varchar(255), @UrlPagina varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Modulo 
+						SET	Nombre = @NombreModulo, 
+							RutaPagina = @UrlPagina,								
+							Activo = @Activo 
+						WHERE Id = @IdModulo								
+						SET @Resultado = 'OK__Se guardaron los cambios del Modulo (' + @NombreModulo+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios al Modulo' 
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarModulo] @IdUser varchar(255), @Modulo varchar(255), @IdModulo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreModulo varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreModulo = Nombre FROM Modulo WHERE Id = @IdModulo
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = COUNT(1) FROM PermisoUsuario WHERE IdModulo = @IdModulo
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__El modulo (' + @NombreModulo +') no se puede Eliminar, actualmente se encuentra siendo usado por otros Usuarios'	
+					END
+				ELSE
+					BEGIN
+						DELETE Modulo WHERE ID = @IdModulo
+						SET @Resultado = 'OK__Se Elimino el Modulo correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar el Modulo' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE PermisoUsuario 
+(Id int identity(1,1) Primary key ,
+IdUsuario int,
+IdModulo int,
+Leer int,
+Crear int,
+Modificar int,
+Eliminar int,
+IdUsuarioCrea int,
+FechaCreacion datetime
+)
+
+ALTER TABLE PermisoUsuario ADD CONSTRAINT FK_IdUsuarioPermisoModulo FOREIGN KEY (IdUsuario) references Usuario(Id)
+ALTER TABLE PermisoUsuario ADD CONSTRAINT FK_IdUsuarioCreaPermiso FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+ALTER TABLE PermisoUsuario ADD CONSTRAINT FK_IdModuloPermiso FOREIGN KEY (IdModulo ) references Modulo(Id)
+
+insert into PermisoUsuario (IdUsuario,IdModulo,Leer,Crear,Modificar,Eliminar,IdUsuarioCrea,FechaCreacion) Values (1,1,1,1,1,1,1,GETDATE())
+insert into PermisoUsuario (IdUsuario,IdModulo,Leer,Crear,Modificar,Eliminar,IdUsuarioCrea,FechaCreacion) Values (1,2,1,1,1,1,1,GETDATE())
+insert into PermisoUsuario (IdUsuario,IdModulo,Leer,Crear,Modificar,Eliminar,IdUsuarioCrea,FechaCreacion) Values (1,3,1,1,1,1,1,GETDATE())
+insert into PermisoUsuario (IdUsuario,IdModulo,Leer,Crear,Modificar,Eliminar,IdUsuarioCrea,FechaCreacion) Values (1,4,1,1,1,1,1,GETDATE())
+insert into PermisoUsuario (IdUsuario,IdModulo,Leer,Crear,Modificar,Eliminar,IdUsuarioCrea,FechaCreacion) Values (1,5,1,1,1,1,1,GETDATE())
+
+go
+
+CREATE FUNCTION Fun_PermisoUsuario(@Accion varchar(255), @IdUsuario Int, @Modulo varchar(255))
+RETURNS int
+AS
+BEGIN	
+	DECLARE @Resultado Int
+	
+	IF @Accion ='Leer'
+		BEGIN			
+			SELECT	@Resultado = P.Leer
+			FROM	Usuario U,
+					PermisoUsuario P,
+					Modulo M
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					M.Id = P.IdModulo and
+					M.RutaPagina = @Modulo
+		END
+	ELSE IF @Accion ='Crear'
+		BEGIN			
+			SELECT	@Resultado = P.Crear
+			FROM	Usuario U,
+					PermisoUsuario P,
+					Modulo M
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					M.Id = P.IdModulo and
+					M.RutaPagina = @Modulo
+		END
+	ELSE IF @Accion ='Modificar'
+		BEGIN			
+			SELECT	@Resultado = P.Modificar
+			FROM	Usuario U,
+					PermisoUsuario P,
+					Modulo M
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					M.Id = P.IdModulo and
+					M.RutaPagina = @Modulo
+		END
+	ELSE IF @Accion ='Eliminar'
+		BEGIN			
+			SELECT	@Resultado = P.Eliminar
+			FROM	Usuario U,
+					PermisoUsuario P,
+					Modulo M
+			WHERE	P.IdUsuario = U.Id and 
+					U.Id = @IdUsuario and
+					M.Id = P.IdModulo and
+					M.RutaPagina = @Modulo
+		END
+	RETURN @Resultado
+END
+GO
+
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearPermisoUsuario] @IdUser varchar(255), @Modulo varchar(255), @IdUsuarioPermiso int,@IdModuloPermiso int,@Leer int,@CrearNuevo int,@Modificar int,@Eliminar int,@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @ValidarPermiso INT, @NombreUsuarioPermiso varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuarioPermiso = Nombre FROM Usuario WHERE Id = @IdUsuarioPermiso
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)
+		IF @Crear > 0
+			BEGIN	
+				SELECT @ValidarPermiso = COUNT(1) FROM PermisoUsuario WHERE IdUsuario = @IdUsuarioPermiso and IdModulo = @IdModuloPermiso
+				
+				IF @ValidarPermiso > 0
+					BEGIN
+						SET @Resultado = 'Error__El Permiso que esta creando ya Existe para el Usuario (' + @NombreUsuarioPermiso + '), por favor valide'
+					END
+				ELSE
+					BEGIN
+						INSERT INTO PermisoUsuario(IdUsuario,IdModulo,Leer,Crear,Modificar,Eliminar,IdUsuarioCrea, FechaCreacion) 
+						VALUES 
+						(@IdUsuarioPermiso,@IdModuloPermiso,@Leer,@CrearNuevo,@Modificar,@Eliminar,@IdUsuario, GETDATE()) 
+						SET @Resultado = 'OK__Se a creado el permiso para el Usuario (' + @NombreUsuarioPermiso + ') correctamente'
+					END
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear Permisos' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosPermisoUsuario] @IdUser varchar(255), @Modulo varchar(255), @IdPermisoUsuario int,@Leer int,@CrearNuevo int,@Modificar int,@Eliminar int,@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modifica INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @NombreUsuarioPermiso varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuarioPermiso = U.Nombre FROM Usuario U, PermisoUsuario P WHERE U.Id = P.IdUsuario and P.Id = @IdPermisoUsuario
+SELECT	@Modifica = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)
+		IF @Modifica > 0
+			BEGIN	
+				UPDATE PermisoUsuario SET	Leer = @Leer,
+											Crear = @CrearNuevo,
+											Modificar = @Modificar,
+											Eliminar = @Eliminar
+				WHERE Id = @IdPermisoUsuario
+				SET @Resultado = 'OK__Se modificaron los Permisos para el Usuario (' + @NombreUsuarioPermiso + ') correctamente'					
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Modificar los Permisos' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarPermisoUsuario] @IdUser varchar(255), @Modulo varchar(255), @IdPermisoUsuario int,@Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)
+		IF @Eliminar > 0
+			BEGIN	
+				DELETE PermisoUsuario WHERE ID = @IdPermisoUsuario
+				SET @Resultado = 'OK__Se Elimino el permiso correctamente'					
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario '+ @NombreUsuario + ' no tiene permiso para Eliminar el Permiso' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ValidarIngresoPagina] @IdUser varchar(255), @Modulo varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @IdUsuario INT, @Leer INT, @ValidarUsuario INT, @NombreUsuario varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @ValidarUsuario = COUNT(1) FROM PermisoUsuario WHERE IdUsuario = @IdUsuario
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+IF @ValidarUsuario = 0
+	BEGIN
+		SET @Resultado = 'El Usuario ('+ @NombreUsuario + ') no tiene permiso para ingresar a este Modulo' 
+	END
+ELSE 
+	BEGIN
+		SELECT	@Leer = dbo.Fun_PermisoUsuario('Leer',@IdUsuario, @Modulo)
+		IF @LEER > 0
+			BEGIN	
+				SET @Resultado = 'OK'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'El Usuario ('+ @NombreUsuario + ') no tiene permiso para ingresar a este Modulo' 
+			END
+	END
+	SELECT @Resultado
+END
+
+go
+
+CREATE FUNCTION [dbo].[Fun_BuscarNombreUsuario] (@idUsuario INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreUsuario VARCHAR(255)
+	SELECT	@NombreUsuario = Nombre
+	FROM	Usuario
+	WHERE	Id = @idUsuario 
+	RETURN @NombreUsuario
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaUsuario]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Usuario WHERE Activo = 1
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridUsuario]
+AS
+BEGIN
+	SELECT	U.Id,
+			U.Usuario,
+			U.Email,
+			U.Nombre As NombreUsuario,
+			U.IdRol,
+			R.Nombre As NombreRol,
+			U.ImagenPerfil,
+			CONVERT(varchar,U.FechaCreacion,20) AS FechaCreacion,			
+			CAST(DATEPART(YEAR ,U.FechaVigencia) As Varchar)+'-'+CAST(DATEPART(MONTH ,U.FechaVigencia) As Varchar)+'-'+CAST(DATEPART(DAY ,U.FechaVigencia) As Varchar) AS FechaVigencia,			
+			U.Activo,
+			CASE U.Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado
+			FROM	Usuario U,
+					Rol R
+			WHERE	U.IdRol = R.Id
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearUsuario] @IdUser varchar(255), @Modulo varchar(255), @Usuario varchar(255), @PasswordUser varchar(255), @EmailUser varchar(255), @NombreUsuario varchar(255), @IdRol int, @FechaVigenciaUser datetime, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuarioCrea VARCHAR(255), @PasswordMd5 varchar(255), @UsuarioMd5 varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuarioCrea = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @UsuarioMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @Usuario ), 2) 
+SELECT @PasswordMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @PasswordUser ), 2)
+	SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)
+	IF @Crear > 0
+			BEGIN
+				INSERT INTO Usuario (IdUser, Usuario, Password, Email, Nombre, IdRol, ImagenPerfil, FechaCreacion, FechaVigencia) VALUES 
+				(@UsuarioMd5, @Usuario, @PasswordMd5, @EmailUser, @NombreUsuario, @IdRol, '\Sources\ImagesPerfilUsers\Usuario.png', GETDATE(), @FechaVigenciaUser) 
+				SET @Resultado = 'OK__Se a creado el Usuario (' + @Usuario+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuarioCrea + ') no tiene permiso para crear Usuario' 
+			END
+	SELECT @Resultado		
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosUsuario] @IdUser varchar(255), @Modulo varchar(255), @IdUsuario int, @Usuario varchar(255), @PasswordUser varchar(255), @EmailUser varchar(255), @NombreUsuario varchar(255), @IdRol int, @FechaVigenciaUser datetime, @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuarioCrea INT, @NombreUsuarioCrea VARCHAR(255), @ValidarIdUsuario INT, @ExisteUsuario INT, @PasswordMd5 varchar(255), @UsuarioMd5 varchar(255)
+SELECT @IdUsuarioCrea = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuarioCrea = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @UsuarioMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @Usuario ), 2) 
+IF @PasswordUser = ''
+	BEGIN
+		SELECT @PasswordMd5 = Password FROM Usuario WHERE Id = @IdUsuario
+	END
+ELSE
+	BEGIN
+		SELECT @PasswordMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @PasswordUser ), 2)
+	END
+
+	SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuarioCrea, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Usuario SET  IdUser = @UsuarioMd5,
+											Usuario = @Usuario,
+											Password = @PasswordMd5,
+											Email = @EmailUser,
+											Nombre = @NombreUsuario,
+											IdRol = @IdRol,
+											FechaVigencia = @FechaVigenciaUser,
+											Activo = @Activo
+										WHERE Id = @IdUsuario
+						SET @Resultado = 'OK__Se guardaron los cambios del Usuario (' + @NombreUsuario+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuarioCrea + ') no tiene permiso para realizar cambios al País'
+					END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarUsuario] @IdUser varchar(255), @Modulo varchar(255), @IdUsuario int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuarioCrea INT, @NombreUsuario VARCHAR(255), @ValidarUsuario int, @NombreUser varchar(255)
+SELECT @IdUsuarioCrea = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @ValidarUsuario = COUNT(1) FROM PermisoUsuario WHERE IdUsuario = @IdUsuario
+SELECT @NombreUser = Nombre FROM Usuario WHERE Id = @IdUsuario
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuarioCrea, @Modulo)
+		IF @Eliminar > 0
+			BEGIN	
+				IF @ValidarUsuario > 0
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUser + ') no se puede Eliminar'
+					END
+				ELSE
+					BEGIN
+						DELETE Usuario WHERE ID = @IdUsuario
+						SET @Resultado = 'OK__Se Elimino el Usuario correctamente'
+					END									
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar el Usuario' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE SP_DatosUsuario @IdUser varchar(255)
+AS
+BEGIN
+	SELECT	U.ImagenPerfil As RutaImagenUsuario,
+			U.Usuario As Usuario,
+			R.Nombre As RolUsuario,
+			U.Nombre As NombreUsuario,
+			U.Email As EmailUsuario,
+			CONVERT(varchar,U.FechaCreacion,20) As FechaCreacion,
+			CONVERT(varchar,U.FechaVigencia,20) As Vigencia			
+	FROM	Usuario U,
+			Rol R
+	WHERE	U.IdUser = 	@IdUser
+			AND U.IdRol = R.ID
+END
+
+go
+
+
+CREATE PROCEDURE SP_CambiarPaswwordUsuario @IdUser varchar(255), @Modulo varchar(255), @Password varchar(255), @NuevoPassword varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+	DECLARE	@PasswordActual varchar(255), @PasswordMd5 varchar(255), @NuevoPasswordMd5 varchar(255),
+	@Modificar Int, @NombreUsuario varchar(255), @IdUsuario Int
+
+	SELECT @PasswordActual = Password FROM Usuario WHERE IdUser = @IdUser
+	SELECT @PasswordMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @Password ), 2)
+	SELECT @NuevoPasswordMd5 = CONVERT ( VARCHAR (32), HashBytes ( 'MD5' ,  @NuevoPassword ), 2)
+
+	SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+	SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+	SELECT	@Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+	IF @Modificar > 0
+			BEGIN
+				IF @PasswordActual = @PasswordMd5
+					BEGIN
+						UPDATE Usuario SET Password = @NuevoPasswordMd5 WHERE IdUser = @IdUser
+						SET @Resultado = 'OK__La contraseña se actualizo correctamente' 
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__La contraseña anterior ingresada es incorrecta'
+					END
+			END	
+		ELSE 
+			BEGIN	
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios a la Contraseña' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridPermisoUsuario]
+AS
+BEGIN
+	SELECT	PU.Id, 
+			M.Nombre As Modulo, 
+			U.Nombre As Usuario,
+			Leer As IdLeer,
+			CASE Leer
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as EstadoLeer,
+			Crear As IdCrear,
+			CASE Crear
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as EstadoCrear,
+			Modificar As IdEditar,
+			CASE Modificar
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as EstadoEditar,
+			Eliminar As IdEliminar,
+			CASE Eliminar
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as EstadoEliminar,
+			dbo.Fun_BuscarNombreUsuario(PU.IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,PU.FechaCreacion,20) AS FechaCreacion
+			FROM	PermisoUsuario PU,
+					Usuario U,
+					Modulo M
+			WHERE	PU.IdUsuario = U.Id
+					and M.Id = PU.IdModulo
+END
+
+go
+
+CREATE TABLE Pais 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Activo int default 1,
+IdUsuarioCrea int,
+FechaCreacion datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Pais ADD CONSTRAINT FK_IdUsuarioCreaPais FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearPais] @IdUser varchar(255), @Modulo varchar(255), @NombrePais varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Pais (Nombre,IdUsuarioCrea, FechaCreacion) VALUES (@NombrePais, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK__Se a creado el País (' + @NombrePais+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear País' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridPais]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Activo,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,FechaCreacion,20) AS FechaCreacion
+			FROM Pais
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosPais] @IdPais int, @IdUser varchar(255), @Modulo varchar(255), @NombrePais varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Pais SET  Nombre = @NombrePais, Activo = @Activo WHERE Id = @IdPais
+					    SET @Resultado = 'OK__Se guardaron los cambios del País (' + @NombrePais+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios al País' 
+					END
+	SELECT @Resultado
+END
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaPais]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Pais WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombrePais (@idPais INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombrePais VARCHAR(255)
+	SELECT	@NombrePais = Nombre
+	FROM	Pais
+	WHERE	Id = @idPais 
+	RETURN @NombrePais
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_EliminarPais] @IdUser varchar(255), @Modulo varchar(255), @IdPais int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombrePais varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombrePais = Nombre FROM Pais WHERE Id = @IdPais
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = COUNT(1) FROM Departamento WHERE IdPais = @IdPais
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__El País (' + @NombrePais +') no se puede Eliminar, actualmente se encuentra en Uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Pais WHERE Id = @IdPais
+						SET @Resultado = 'OK__Se Elimino el País correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar el País' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE Ciudad 
+(Id int identity(1,1) Primary key ,
+IdPais int,
+Nombre varchar(255),
+Activo int default 1,
+IdUsuarioCrea int,
+FechaCreacion datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Ciudad ADD CONSTRAINT FK_IdPais FOREIGN KEY (IdPais) references Pais(Id)
+ALTER TABLE Ciudad ADD CONSTRAINT FK_IdUsuarioCreaDepartamento FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridCiudad]
+AS
+BEGIN
+	SELECT	C.Id, 
+			P.Id As IdPais,
+			P.Nombre As NombrePais, 
+			C.Nombre,
+			C.Activo,
+			CASE C.Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(C.IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,C.FechaCreacion,20) AS FechaCreacion
+			FROM	Pais P,
+					Ciudad C
+			WHERE C.Idpais = P.Id
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaCiudad]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Ciudad WHERE Activo = 1
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearCiudad] @IdUser varchar(255), @Modulo varchar(255), @IdPais int, @NombreCiudad varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Ciudad(IdPais,Nombre,IdUsuarioCrea, FechaCreacion) VALUES (@IdPais, @NombreCiudad, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK__Se a creado la Ciudad (' + @NombreCiudad+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear Ciudad' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosCiudad] @IdUser varchar(255), @Modulo varchar(255), @IdPais int, @IdCiudad int, @NombreCiudad varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Ciudad SET  IdPais = @IdPais, Nombre = @NombreCiudad, Activo = @Activo WHERE Id = @IdCiudad
+					    SET @Resultado = 'OK__Se guardaron los cambios de la Ciudad (' + @NombreCiudad+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios a la Ciudad' 
+					END
+	SELECT @Resultado
+END
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarCiudad] @IdUser varchar(255), @Modulo varchar(255), @IdCiudad int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreCiudad varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreCiudad = Nombre FROM Pais WHERE Id = @IdCiudad
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)	
+		IF @Eliminar > 0
+			BEGIN
+			SET @validar = 0
+				--SELECT @validar = COUNT(1) FROM Ciudad WHERE IdPais = @IdPais
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__La Ciudad (' + @NombreCiudad +') no se puede Eliminar, actualmente se encuentra en Uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Ciudad WHERE Id = @IdCiudad
+						SET @Resultado = 'OK__Se Elimino la Ciudad correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar la Ciudad' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE TABLE TipoDocumento 
+(Id int identity(1,1) Primary key ,
+Nombre varchar(255),
+Descripcion Varchar(255),
+Activo int default 1,
+IdUsuarioCrea int,
+FechaCreacion datetime,
+unique(Nombre)
+)
+
+ALTER TABLE TipoDocumento ADD CONSTRAINT FK_IdUsuarioCreaTipoDocumento FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearTipoDocumento] @IdUser varchar(255), @Modulo varchar(255), @NombreTipoDocumento varchar(255), @Descripcion varchar(255), @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO TipoDocumento (Nombre, Descripcion,IdUsuarioCrea, FechaCreacion) VALUES (@NombreTipoDocumento, @Descripcion, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK__Se a creado el Tipo Documento (' + @NombreTipoDocumento+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear el Tipo Documento' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridTipoDocumento]
+AS
+BEGIN
+	SELECT	Id, 
+			Nombre, 
+			Descripcion,
+			Activo,
+			CASE Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,FechaCreacion,20) AS FechaCreacion
+			FROM TipoDocumento
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosTipoDocumento] @IdTipoDocumento int, @IdUser varchar(255), @Modulo varchar(255), @NombreTipoDocumento varchar(255), @Descripcion varchar(255), @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE TipoDocumento SET  Nombre = @NombreTipoDocumento, Descripcion = @Descripcion ,Activo = @Activo WHERE Id = @IdTipoDocumento
+					    SET @Resultado = 'OK__Se guardaron los cambios del TipoDocumento (' + @NombreTipoDocumento+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios al Tipo Documento' 
+					END
+	SELECT @Resultado
+END
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaTipoDocumento]
+AS
+BEGIN
+	SELECT Id, Nombre FROM TipoDocumento WHERE Activo = 1
+END
+
+go
+
+CREATE FUNCTION Fun_BuscarNombreTipoDocumento (@idTipoDocumento INT)
+RETURNS VARCHAR(255)
+AS BEGIN
+DECLARE @NombreTipoDocumento VARCHAR(255)
+	SELECT	@NombreTipoDocumento = Nombre
+	FROM	TipoDocumento
+	WHERE	Id = @idTipoDocumento 
+	RETURN @NombreTipoDocumento
+END
+
+go
+
+
+CREATE PROCEDURE [dbo].[SP_EliminarTipoDocumento] @IdUser varchar(255), @Modulo varchar(255), @IdTipoDocumento int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreTipoDocumento varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreTipoDocumento = Nombre FROM TipoDocumento WHERE Id = @IdTipoDocumento
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)	
+		IF @Eliminar > 0
+			BEGIN	
+			SET @validar = 0
+				--SELECT @validar = COUNT(1) FROM Sucursal WHERE IdTipoDocumento = @IdTipoDocumento
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__El Tipo Documento (' + @NombreTipoDocumento +') no se puede Eliminar, actualmente se encuentra en Uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE TipoDocumento WHERE Id = @IdTipoDocumento
+						SET @Resultado = 'OK__Se Elimino el Tipo Documento correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar el Tipo Documento' 
+			END
+	SELECT @Resultado
+END
 
 go
 
@@ -1540,7 +1151,7 @@ unique(Nombre)
 )
 
 ALTER TABLE Empresa ADD CONSTRAINT FK_IdUsuarioCreaEmpresa FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
-ALTER TABLE Empresa ADD CONSTRAINT FK_IdTipoDocumentoCreaEmpresa FOREIGN KEY (IdTipoDocumento ) references TipoDocumentoIdentificacion(Id)
+ALTER TABLE Empresa ADD CONSTRAINT FK_IdTipoDocumentoCreaEmpresa FOREIGN KEY (IdTipoDocumento ) references TipoDocumento(Id)
 ALTER TABLE Empresa ADD CONSTRAINT FK_IdCiudadCreaEmpresa FOREIGN KEY (IdCiudad ) references Ciudad(Id)
 
 go
@@ -1566,8 +1177,6 @@ SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)
 	SELECT @Resultado
 END
 
----------------------------------------------------------------------------------------
-
 go
 
 CREATE PROCEDURE [dbo].[SP_GridEmpresa]
@@ -1575,83 +1184,249 @@ AS
 BEGIN
 	SELECT	E.Id, 
 			E.Nombre, 
-			CAST(T.Nombre As varchar) + ' ' + CAST(E.Identificacion As varchar) As Identificacion,
+			E.IdTipoDocumento,
+			T.Nombre As TipoDocumento,
+			E.Identificacion As IdentificacionEmpresa,
 			E.Email,
 			E.Telefono,
 			E.Contacto, 
-			CAST(E.Direccion As varchar)+' '+CAST(C.Nombre As varchar) As Direccion,
+			E.Direccion As DireccionEmpresa,
+			E.IdCiudad,
+			C.Nombre As NombreCiudad,
+			E.Activo,
 			CASE E.Activo
-			WHEN 1 THEN 'Activa'
-			ELSE 'Inactiva'
-			END as Estado
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
+			END as Estado,
+			dbo.Fun_BuscarNombreUsuario(E.IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,E.FechaCreacion,20) AS FechaCreacion
 			FROM	Empresa E,
-					TipoDocumentoIdentificacion T,
+					TipoDocumento T,
 					Ciudad C
 			WHERE	E.IdCiudad = C.Id AND
 					E.IdTipoDocumento = T.Id
 END
 
----------------------------------------------------------------------------------------
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosEmpresa]  @IdUser varchar(255), @Modulo varchar(255), @IdEmpresa int, @NombreEmpresa varchar(255),@IdTipoDocumento int, @IdentificacionEmpresa varchar(255), @EmailEmpresa varchar(255), @TelefonoEmpresa varchar(255), @ContactoEmpresa varchar(255), @DireccionEmpresa varchar(255), @IdCiudad int, @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Empresa SET  Nombre = @NombreEmpresa, 
+											IdTipoDocumento = @IdTipoDocumento,
+											Identificacion = @IdentificacionEmpresa,
+											Email = @EmailEmpresa,
+											Telefono = @TelefonoEmpresa,
+											Contacto = @ContactoEmpresa,
+											Direccion = @DireccionEmpresa,
+											IdCiudad = @IdCiudad,
+											Activo = @Activo 
+						WHERE Id = @IdEmpresa
+					    SET @Resultado = 'OK__Se guardaron los cambios de la Empresa (' + @NombreEmpresa+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios al País' 
+					END
+	SELECT @Resultado
+END
+go
+
+CREATE PROCEDURE [dbo].[SP_ListaEmpresa]
+AS
+BEGIN
+	SELECT Id, Nombre FROM Empresa WHERE Activo = 1
+END
 
 go
 
-CREATE FUNCTION [dbo].[Fun_BuscarNombreUsuario] (@idUsuario INT)
+CREATE FUNCTION Fun_BuscarNombreEmpresa (@idEmpresa INT)
 RETURNS VARCHAR(255)
 AS BEGIN
-DECLARE @NombreUsuario VARCHAR(255)
-	SELECT	@NombreUsuario = Nombre
-	FROM	Usuario
-	WHERE	Id = @idUsuario 
-	RETURN @NombreUsuario
+DECLARE @NombreEmpresa VARCHAR(255)
+	SELECT	@NombreEmpresa = Nombre
+	FROM	Empresa
+	WHERE	Id = @idEmpresa 
+	RETURN @NombreEmpresa
 END
-
----------------------------------------------------------------------------------------
 
 go
 
-CREATE PROCEDURE [dbo].[SP_CargarDatosEditarEmpresa] @Id int
+
+CREATE PROCEDURE [dbo].[SP_EliminarEmpresa] @IdUser varchar(255), @Modulo varchar(255), @IdEmpresa int, @Resultado varchar(255) OUTPUT
 AS
 BEGIN
-	SELECT	E.Nombre As NombreEmpresa,
-			E.IdTipoDocumento,
-			E.Identificacion As NumeroIdentificacion,
-			E.Email,
-			E.Telefono,
-			E.Direccion,
-			E.IdCiudad,
-			E.Contacto As NombreContacto,
-			CASE E.Activo
-			WHEN 1 THEN 'Activa'
-			ELSE 'Inactiva'
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreEmpresa varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreEmpresa = Nombre FROM Empresa WHERE Id = @IdEmpresa
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)	
+		IF @Eliminar > 0
+			BEGIN	
+				SELECT @validar = COUNT(1) FROM Sucursal WHERE IdEmpresa = @IdEmpresa
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__la Empresa (' + @NombreEmpresa +') no se puede Eliminar, actualmente se encuentra en Uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Empresa WHERE Id = @IdEmpresa
+						SET @Resultado = 'OK__Se Elimino la Empresa correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar la Empresa' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+
+CREATE TABLE Sucursal 
+(Id int identity(1,1) Primary key ,
+IdEmpresa int,
+Nombre varchar(255),
+Email varchar(255),
+Telefono varchar(255),
+Contacto varchar(255),
+Direccion varchar(255),
+IdCiudad int,
+Activo int default 1,
+IdUsuarioCrea int,
+FechaCreacion datetime,
+unique(Nombre)
+)
+
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IdEmpresa FOREIGN KEY (IdEmpresa) references Empresa(Id)
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IdUsuarioCreaSucursal FOREIGN KEY (IdUsuarioCrea ) references Usuario(Id)
+ALTER TABLE Sucursal ADD CONSTRAINT FK_IdCiudadCreaSucursal FOREIGN KEY (IdCiudad ) references Ciudad(Id)
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GridSucursal]
+AS
+BEGIN
+	SELECT	S.Id, 
+			E.Id As IdEmpresa,
+			E.Nombre As NombreEmpresa, 
+			S.Nombre,
+			S.Email,
+			S.Telefono,
+			S.Contacto, 
+			S.Direccion As DireccionSucursal,
+			S.IdCiudad,
+			C.Nombre As NombreCiudad,
+			S.Activo,
+			CASE S.Activo
+			WHEN 1 THEN 'Activo'
+			ELSE 'Inactivo'
 			END as Estado,
-			E.Activo
-	FROM	Empresa E,
-			TipoDocumentoIdentificacion T,
-			Ciudad C
-	WHERE	E.Id = @Id
-			AND	T.Id = E.IdTipoDocumento
-			AND C.Id = E.IdCiudad
+			dbo.Fun_BuscarNombreUsuario(S.IdUsuarioCrea) As NombreUsuario, 
+			CONVERT(varchar,S.FechaCreacion,20) AS FechaCreacion
+			FROM	Empresa E,
+					Sucursal S,
+					Ciudad C
+			WHERE	S.IdEmpresa = E.Id AND
+					S.IdCiudad = C.Id
 END
 
 go
 
-CREATE PROCEDURE [dbo].[SP_CargarDatosDetalleEmpresa] @Id int
+CREATE PROCEDURE [dbo].[SP_ListaSucursal]
 AS
 BEGIN
-	SELECT	E.Nombre As NombreEmpresa,
-			CAST(T.Nombre As varchar) + ' ' + CAST(E.Identificacion As varchar) As Identificacion,
-			E.Email,
-			E.Telefono,
-			CAST(E.Direccion As varchar)+' '+CAST(C.Nombre As varchar) As Direccion,
-			E.Contacto As NombreContacto,
-			CASE E.Activo
-			WHEN 1 THEN 'Activa'
-			ELSE 'Inactiva'
-			END as Estado
-	FROM	Empresa E,
-			TipoDocumentoIdentificacion T,
-			Ciudad C
-	WHERE	E.Id = @Id
-			AND	T.Id = E.IdTipoDocumento
-			AND C.Id = E.IdCiudad
+	SELECT Id, Nombre FROM Sucursal WHERE Activo = 1
 END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_CrearSucursal] @IdUser varchar(255), @Modulo varchar(255), @IdEmpresa int, @NombreSucursal varchar(255), @EmailSucursal varchar(255), @TelefonoSucursal varchar(255), @ContactoSucursal varchar(255), @DireccionSucursal varchar(255), @IdCiudad int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Crear INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT	@Crear = dbo.Fun_PermisoUsuario('Crear',@IdUsuario, @Modulo)	
+		IF @Crear > 0
+			BEGIN
+				INSERT INTO Sucursal(IdEmpresa,Nombre,Email,Telefono,Contacto,Direccion,IdCiudad,IdUsuarioCrea, FechaCreacion) 
+				VALUES 
+				(@IdEmpresa, @NombreSucursal, @EmailSucursal, @TelefonoSucursal, @ContactoSucursal, @DireccionSucursal, @IdCiudad, @IdUsuario, GETDATE()) 
+				SET @Resultado = 'OK__Se a creado la Sucursal (' + @NombreSucursal+ ') correctamente'
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para crear Sucursal' 
+			END
+	SELECT @Resultado
+END
+
+go
+
+CREATE PROCEDURE [dbo].[SP_GuardarCambiosSucursal] @IdUser varchar(255), @Modulo varchar(255), @IdEmpresa int, @IdSucursal int, @NombreSucursal varchar(255), @EmailSucursal varchar(255), @TelefonoSucursal varchar(255), @ContactoSucursal varchar(255), @DireccionSucursal varchar(255), @IdCiudad int, @Activo int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Modificar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @Modificar = dbo.Fun_PermisoUsuario('Modificar',@IdUsuario, @Modulo)	
+				IF @Modificar > 0
+					BEGIN
+						UPDATE Sucursal SET IdEmpresa = @IdEmpresa, 
+											Nombre = @NombreSucursal, 
+											Email = @EmailSucursal,
+											Telefono = @TelefonoSucursal,
+											Contacto = @ContactoSucursal,
+											Direccion = @DireccionSucursal,
+											IdCiudad = @IdCiudad,
+											Activo = @Activo 
+						WHERE Id = @IdSucursal
+					    SET @Resultado = 'OK__Se guardaron los cambios de la Sucursal (' + @NombreSucursal+ ') correctamente'
+					END
+				ELSE
+					BEGIN
+						SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para realizar cambios a la Sucursal' 
+					END
+	SELECT @Resultado
+END
+go
+
+CREATE PROCEDURE [dbo].[SP_EliminarSucursal] @IdUser varchar(255), @Modulo varchar(255), @IdSucursal int, @Resultado varchar(255) OUTPUT
+AS
+BEGIN
+DECLARE @Eliminar INT, @IdUsuario INT, @NombreUsuario VARCHAR(255), @validar INT, @NombreSucursal varchar(255)
+SELECT @IdUsuario = Id FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreUsuario = Nombre FROM Usuario WHERE IdUser = @IdUser
+SELECT @NombreSucursal = Nombre FROM Empresa WHERE Id = @IdSucursal
+	SELECT	@Eliminar = dbo.Fun_PermisoUsuario('Eliminar',@IdUsuario, @Modulo)	
+		IF @Eliminar > 0
+			BEGIN
+			SET @validar = 0
+				--SELECT @validar = COUNT(1) FROM Sucursal WHERE IdEmpresa = @IdEmpresa
+				IF @validar > 0 
+					BEGIN
+						SET @Resultado = 'Error__La Sucursal (' + @NombreSucursal +') no se puede Eliminar, actualmente se encuentra en Uso'	
+					END
+				ELSE
+					BEGIN
+						DELETE Sucursal WHERE Id = @IdSucursal
+						SET @Resultado = 'OK__Se Elimino la Sucursal correctamente'	
+					END								
+			END
+		ELSE
+			BEGIN
+				SET @Resultado = 'Error__El Usuario ('+ @NombreUsuario + ') no tiene permiso para Eliminar la Sucursal' 
+			END
+	SELECT @Resultado
+END
+
+go
+

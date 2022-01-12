@@ -49,7 +49,7 @@ function GridHistorialIngresoUsuario() {
 }
 
 function CambiarPaswwordUsuario() {
-    let Modulo = '/Pais/Pais';
+    let Modulo = '/Usuario/InformacionUsuario';
     let IdUser = Cookies.get('IdUserGestionSystem');
     let Password = $('#InputPasswordAnterior').val();
     let NuevoPassword = $('#InputPasswordNuevo').val();
