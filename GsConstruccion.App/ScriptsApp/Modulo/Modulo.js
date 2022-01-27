@@ -1,4 +1,6 @@
-﻿function ListaModulo() {
+﻿const { auto } = require("@popperjs/core");
+
+function ListaModulo() {
     $.ajax({
         type: 'POST',
         dataType: 'json',
@@ -35,21 +37,21 @@ function GridModulo() {
             { "data": "RutaPagina", title: "Url Página" },
             { "data": "Activo", title: "Activo", "visible": false },
             { "data": "Estado", title: "Estado" },
-            { "data": "NombreUsuario", title: "Usuario Creador", "visible": true },
-            { "data": "FechaCreacion", title: "Fecha Creación", "visible": true },
+            { "data": "NombreUsuario", title: "Usuario Creador", "visible": false },
+            { "data": "FechaCreacion", title: "Fecha Creación", "visible": false },
             {
                 data: null,
-                defaultContent: '<button class="EditarModulo btn btn-primary btn-sm">Editar</button>',
+                defaultContent: '<img class="EditarModulo" style="height:40px" src="../../Sources/ImagesApp/Editar.png" />',
                 className: '',
                 orderable: false,
-                width: 100,
+                width: 'auto',
             },
             {
                 data: null,
-                defaultContent: '<button class="EliminarModulo btn btn-danger btn-sm">Eliminar</button>',
+                defaultContent: '<img class="EliminarModulo" style="height:40px" src="../../Sources/ImagesApp/Eliminar.png" />',
                 className: '',
                 orderable: false,
-                width: 100,
+                width: 'auto',
             },
         ],
         dom: 'Bfrtlip',
