@@ -3,9 +3,13 @@
     ViewBag.Title = "Modulo";
 }
 
-<h4>Modulo</h4>
-<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearModulo">Nuevo Modulo</button>
-<div style="margin-top:20px; background-color:white;border-radius:15px">
+
+<div style="margin-top:5px; background-color:white;border-radius:15px">
+    <br />
+    <h4 style="margin-left:25px; margin-top:0px; font-weight:bold">GSC - MODULO</h4>
+    <div style="text-align:end">
+        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCrearModulo" style="margin-right:25px; min-width:25%">Nuevo Modulo</button>
+    </div>        
     <div style="padding-top:20px">
         <h5 style="text-align:center">LISTA DE MODULOS</h5>
     </div>
@@ -17,24 +21,24 @@
 
 <!-- Modal Crear -->
 <div class="modal fade" id="ModalCrearModulo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header bg-black">
-                <h5 class="modal-title" id="staticBackdropLabel" style="color:white"><strong>Nuevo Modulo</strong></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>GSC - Nuevo Modulo</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" style="background: url(../../Sources/ImagesApp/Fondo6.jpg); background-repeat: no-repeat; background-attachment: fixed; background-position: center center; background-size:cover">
+            <div class="modal-body" style="background: url(../../Sources/ImagesApp/Fondo.jpg); background-repeat: no-repeat; background-attachment: fixed; background-position: center center; background-size:cover">
                 <table class="table table-borderless">
                     <tr>
-                        <td>
+                        <td style="width:100%">
                             <span>Nombre Modulo</span>
-                            <input class="form-control" type="text" name="name" value="" id="InputNombreModulo" autocomplete="off" />
+                            <input class="form-control" type="text" name="name" value="" id="InputNombreModulo" autocomplete="off" style="min-width: 100%; margin-left: auto; margin-right: auto"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="width:100%">
                             <span>Ruta Página</span>
-                            <input class="form-control" type="text" name="name" value="" id="InputRutaPagina" autocomplete="off" />
+                            <input class="form-control" type="text" name="name" value="" id="InputRutaPagina" autocomplete="off" style="min-width: 100%; margin-left: auto; margin-right: auto"/>
                         </td>
                     </tr>
                 </table>
@@ -48,31 +52,31 @@
 
 <!-- Modal Editar -->
 <div class="modal fade" id="ModalEditarModulo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><strong>Editar Modulo</strong></h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>GSC - Editar Modulo</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background: url(../../Sources/ImagesApp/Fondo.jpg); background-repeat: no-repeat; background-attachment: fixed; background-position: center center; background-size:cover">
                 <label id="IdModulo" hidden></label>
                 <table class="table table-borderless">
                     <tr>
-                        <td>
+                        <td style="width:100%">
                             <span>Nombre Modulo</span>
-                            <input class="form-control" type="text" name="name" value="" id="InputENombreModulo" autocomplete="off" />
+                            <input class="form-control" type="text" name="name" value="" id="InputENombreModulo" autocomplete="off" style="min-width: 100%; margin-left: auto; margin-right: auto" />
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="width:100%">
                             <span>Ruta Página</span>
-                            <input class="form-control" type="text" name="name" value="" id="InputERutaPagina" autocomplete="off" />
+                            <input class="form-control" type="text" name="name" value="" id="InputERutaPagina" autocomplete="off" style="min-width: 100%; margin-left: auto; margin-right: auto" />
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <span>Estado</span>
-                            <select class="form-control" id="SelectEstadoModulo">
+                        <td style="width:100%">
+                            <span>Ruta Página</span>
+                            <select class="form-control" id="SelectEstadoModulo" style="min-width: 100%; margin-left: auto; margin-right: auto" >
                                 <option value="0">Inactivo</option>
                                 <option value="1">Activo</option>
                             </select>
